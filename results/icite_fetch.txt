@@ -1,0 +1,90 @@
+=== NIH iCite Citing Papers Fetch for Retracted PMIDs ===
+Loading retracted PMIDs from data/processed/retracted.parquet...
+Loaded 37,201 unique retracted PMIDs.
+Prepared 187 batches of up to 200 PMIDs.
+
+First response top-level JSON keys: ['data']
+First record in response:
+{
+  "_id": "1061089",
+  "pmid": 1061089,
+  "year": 1975,
+  "cited_by": [
+    2679362,
+    3428368,
+    106767,
+    6201704,
+    670932,
+    107974,
+    1267736,
+    145499,
+    789346,
+    3874964,
+    3020371,
+    357423,
+    6950439,
+    29218034,
+    10735859,
+    6927765,
+    372974,
+    365473,
+    7220647,
+    6367632,
+    748954,
+    748952,
+    231268,
+    7012836,
+    1518913,
+    7020539,
+    6164065,
+    830649,
+    911105,
+    1632202,
+    6455889,
+    6458059,
+    610499,
+    3006105,
+    956124,
+    2829256,
+    418061
+  ]
+}
+Verified required fields (pmid, year, cited_by) are present in first record.
+
+
+--- Batch Fetch Summary ---
+Total batches requested: 187
+Batches completed successfully: 187
+Batches failed: 0
+Batches loaded from cache: 0
+Batches fetched from network: 187
+Batches returning fewer records than requested: 51 / 187 (27.27%)
+Total records returned: 37,135 vs 37,201 requested (99.82%)
+
+Processing all batch files to build citing pairs table...
+Extracted 735,647 raw (retracted_pmid, citing_pmid) pairs.
+Deduplicating pairs...
+Duplicate pairs dropped: 0
+Final unique pairs: 735,647
+Saved pair table to data/processed/icite_citing_pairs.parquet (735,647 rows).
+
+=== Summary Metrics ===
+Retracted PMIDs requested: 37,201
+Retracted PMIDs returned by iCite: 37,135 (99.82%)
+Retracted PMIDs with at least one citing paper: 34,069 (91.58%)
+Total unique (retracted_pmid, citing_pmid) pairs: 735,647
+Unique citing PMIDs: 597,694
+Citing papers per retracted PMID (across all 37,201 requested):
+  - Median: 7.0
+  - Max: 4,217
+Citing papers per retracted PMID (across 37,135 returned):
+  - Median: 7.0
+
+Top 5 retracted PMIDs with the most citing papers:
+Rank   Retracted PMID   Citing Papers Count 
+------------------------------------------
+1      12077603         4,217               
+2      32205204         3,131               
+3      33428867         3,031               
+4      23432189         2,851               
+5      16541076         2,305               
