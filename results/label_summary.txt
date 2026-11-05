@@ -1,0 +1,8 @@
+RW rows total: 73444
+After RetractionNature filter: 68002
+RW rows with valid PMID: 30570 (unique PMIDs: 30546)
+PubMed-tag count: 35274
+Overlap: 28619
+Union size: 37201
+RW-only count: 1927
+Tag-only count: 6655
