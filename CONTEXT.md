@@ -52,3 +52,20 @@ labels -> BM25 index -> iCite one-hop table -> retrieval over MIRAGE (7,663 ques
   --collection JsonCollection --input <dir> --index <idx>
   --generator DefaultLuceneDocumentGenerator --threads 2 --storeRaw
   (Java 23, Python 3.12, Pyserini 2.4.0)
+
+## Label Table Summary
+- `data/processed/retracted.parquet`: 37,201 unique retracted PMIDs (union of RW Retractions and PubMed tags).
+  Columns: pmid (int64), doi, retraction_date, reasons, in_rw (bool), in_pubmed_tag (bool), has_reinstatement (bool).
+- `data/processed/retracted_doi_only.parquet`: 32,260 records from Retraction Watch with DOI but no valid PMID.
+- Overlap / counts:
+  - RW rows total: 73,444
+  - RetractionNature == "Retraction": 68,002
+  - RW rows with valid PMID: 30,570 (30,546 unique PMIDs)
+  - PubMed retracted tag list: 35,274 unique PMIDs
+  - Overlap: 28,619 PMIDs
+  - Union size: 37,201 PMIDs
+  - RW-only: 1,927 PMIDs
+  - PubMed-tag only: 6,655 PMIDs
+  - Retracted PMIDs with has_reinstatement: 21
+  - Tag-only PMIDs in Retraction Watch under other RetractionNature: 62 unique PMIDs (343 rows: 26 Expression of concern, 19 Reinstatement, 17 Correction)
+

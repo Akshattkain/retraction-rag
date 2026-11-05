@@ -83,6 +83,12 @@ def main():
     df_rw["doi"] = df_rw["OriginalPaperDOI"].apply(clean_doi)
     df_rw["reasons"] = df_rw["Reason"].apply(clean_reasons)
 
+    # Collect PMIDs with RetractionNature == "Reinstatement"
+    df_reinstatements = df_raw[df_raw["RetractionNature"] == "Reinstatement"]
+    reinstatement_pmids = set(
+        df_reinstatements["OriginalPaperPubMedID"].apply(clean_pmid).dropna().astype(int)
+    )
+
     # RW PMID counts
     rw_valid_pmid_mask = df_rw["pmid"].notna()
     rw_rows_with_valid_pmid = int(rw_valid_pmid_mask.sum())
@@ -132,6 +138,7 @@ def main():
     for p in sorted(union_pmids):
         in_rw = p in rw_unique_pmids
         in_tag = p in pubmed_tag_pmids
+        has_reinstatement = p in reinstatement_pmids
 
         if in_rw:
             doi = rw_by_pmid[p]["doi"]
@@ -150,6 +157,7 @@ def main():
                 "reasons": reasons,
                 "in_rw": in_rw,
                 "in_pubmed_tag": in_tag,
+                "has_reinstatement": has_reinstatement,
             }
         )
 
@@ -158,6 +166,7 @@ def main():
     df_retracted["pmid"] = df_retracted["pmid"].astype("int64")
     df_retracted["in_rw"] = df_retracted["in_rw"].astype("bool")
     df_retracted["in_pubmed_tag"] = df_retracted["in_pubmed_tag"].astype("bool")
+    df_retracted["has_reinstatement"] = df_retracted["has_reinstatement"].astype("bool")
     df_retracted["retraction_date"] = pd.to_datetime(df_retracted["retraction_date"])
 
     df_retracted.to_parquet(out_retracted_path, index=False)
@@ -167,12 +176,23 @@ def main():
     doi_only_mask = df_rw["doi"].notna() & df_rw["pmid"].isna()
     df_doi_only = df_rw[doi_only_mask][
         ["Record ID", "doi", "retraction_date", "reasons", "Title", "Journal"]
-    ].copy()
-    df_doi_only.rename(
-        columns={"Record ID": "record_id", "Title": "title", "Journal": "journal"},
-        inplace=True,
+    ].copy().rename(
+        columns={"Record ID": "record_id", "Title": "title", "Journal": "journal"}
     )
     df_doi_only.to_parquet(out_doi_only_path, index=False)
+
+    # Analyze tag-only PMIDs appearing in RW under any other RetractionNature
+    df_non_ret = df_raw[df_raw["RetractionNature"] != "Retraction"].copy()
+    df_non_ret["pmid"] = df_non_ret["OriginalPaperPubMedID"].apply(clean_pmid)
+    df_non_ret_valid = df_non_ret[df_non_ret["pmid"].notna()].copy()
+    df_non_ret_valid["pmid"] = df_non_ret_valid["pmid"].astype(int)
+    tag_only_in_other = df_non_ret_valid[df_non_ret_valid["pmid"].isin(tag_only)]
+
+    counts_by_nature_unique = tag_only_in_other.groupby("RetractionNature")["pmid"].nunique()
+    counts_by_nature_rows = tag_only_in_other["RetractionNature"].value_counts()
+
+    retracted_with_reinstatement_count = int(df_retracted["has_reinstatement"].sum())
+    doi_only_row_count = len(df_doi_only)
 
     # 4 & 5. Print and save summary
     summary_lines = [
@@ -184,7 +204,16 @@ def main():
         f"Union size: {len(union_pmids)}",
         f"RW-only count: {len(rw_only)}",
         f"Tag-only count: {len(tag_only)}",
+        f"Retracted PMIDs with has_reinstatement: {retracted_with_reinstatement_count}",
+        f"Row count of retracted_doi_only.parquet: {doi_only_row_count}",
+        f"Tag-only PMIDs appearing in Retraction Watch under other RetractionNature: "
+        f"{tag_only_in_other['pmid'].nunique()} unique PMIDs ({len(tag_only_in_other)} rows):",
     ]
+    for nature in counts_by_nature_unique.index:
+        summary_lines.append(
+            f"  - {nature}: {counts_by_nature_unique[nature]} unique PMIDs ({counts_by_nature_rows.get(nature, 0)} rows)"
+        )
+
     summary_output = "\n".join(summary_lines)
     print(summary_output)
 

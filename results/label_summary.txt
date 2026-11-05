@@ -6,3 +6,9 @@ Overlap: 28619
 Union size: 37201
 RW-only count: 1927
 Tag-only count: 6655
+Retracted PMIDs with has_reinstatement: 21
+Row count of retracted_doi_only.parquet: 32260
+Tag-only PMIDs appearing in Retraction Watch under other RetractionNature: 62 unique PMIDs (343 rows):
+  - Correction: 17 unique PMIDs (17 rows)
+  - Expression of concern: 26 unique PMIDs (307 rows)
+  - Reinstatement: 19 unique PMIDs (19 rows)
