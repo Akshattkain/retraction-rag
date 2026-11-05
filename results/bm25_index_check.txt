@@ -1,0 +1,57 @@
+=== BM25 Lucene Index Verification (Pilot Subset) ===
+
+--- Step 1: Index Stats & Size Verification ---
+Index location: data/processed/bm25_subset
+Indexed document count: 1,224,889
+Expected document count: 1,224,889
+Count mismatch flagged: False
+SUCCESS: Indexed doc count exactly matches the corpus scan total (1,224,889).
+Index size on disk: 1.5G
+
+--- Step 2: Smoke Test ---
+Query: "eosinophilic meningitis Angiostrongylus" (k=3)
+Rank   PMID         DocID                    Score     
+----------------------------------------------------
+1      579615       pubmed23n0020_0          17.6820   
+2      29574000     pubmed23n0940_25652      17.3914   
+3      33236700     pubmed23n1060_3065       16.9017   
+
+--- Step 3: PubMedQA Recall Check (Gold PMID in Corpus Subset) ---
+Loading third_party/MIRAGE/benchmark.json...
+Found 23 PubMedQA questions whose gold PMID is in the corpus subset.
+
+Per-Question Retrieval Results (k=32):
+#    QID                        Gold PMID    Hit@32   Rank   Score   
+---------------------------------------------------------------------
+1    18537964                   18537964     YES      1      24.5749 
+2    23736032                   23736032     YES      1      26.3250 
+3    12121321                   12121321     YES      1      20.5246 
+4    12846929                   12846929     YES      1      22.6062 
+5    14697414                   14697414     YES      1      18.6119 
+6    27592038                   27592038     YES      1      41.3730 
+7    21123461                   21123461     YES      1      14.2187 
+8    25675614                   25675614     YES      1      27.1386 
+9    15943725                   15943725     YES      1      34.6392 
+10   25043083                   25043083     YES      1      32.0536 
+11   14692023                   14692023     YES      1      10.3037 
+12   11481172                   11481172     YES      1      37.2484 
+13   10877371                   10877371     YES      1      31.1342 
+14   18540901                   18540901     YES      1      41.6227 
+15   17894828                   17894828     YES      1      31.6797 
+16   11481599                   11481599     YES      1      22.1099 
+17   26304701                   26304701     YES      1      33.4497 
+18   12848629                   12848629     YES      1      20.5072 
+19   18507507                   18507507     YES      1      19.1976 
+20   25669733                   25669733     YES      1      30.5874 
+21   11483547                   11483547     YES      1      42.9187 
+22   19836806                   19836806     YES      1      21.9996 
+23   27615402                   27615402     YES      1      24.4207 
+
+=== Summary Metrics ===
+Total PubMedQA questions evaluated: 23
+Gold PMIDs retrieved in Top 32: 23 / 23 (100.00%)
+MRR@32: 1.0000
+Recall@1:  23 / 23 (100.00%)
+Recall@5:  23 / 23 (100.00%)
+Recall@10: 23 / 23 (100.00%)
+Ranks of hits: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]

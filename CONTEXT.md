@@ -69,3 +69,17 @@ labels -> BM25 index -> iCite one-hop table -> retrieval over MIRAGE (7,663 ques
   - Retracted PMIDs with has_reinstatement: 21
   - Tag-only PMIDs in Retraction Watch under other RetractionNature: 62 unique PMIDs (343 rows: 26 Expression of concern, 19 Reinstatement, 17 Correction)
 
+## BM25 Index & Retrieval Helper
+- Index path: `data/processed/bm25_subset`
+  - Built over `data/raw/pubmed_subset/chunk` (58 files, 1,224,889 documents) using Lucene JsonCollection with raw document storage.
+  - Document count: 1,224,889 (matches corpus scan total exactly; 0 unindexable, 0 errors).
+  - Index size on disk: ~1.5 GB.
+- Search helper: `src/bm25_search.py`
+  - Function: `search(query: str, k: int = 32) -> list[dict]`
+  - Returns list of `{docid: str, pmid: int, score: float, rank: int}` with 1-indexed ranks.
+  - Maps `docid` to integer `pmid` via cached `data/processed/subset_docs.parquet` (asserts `id` is unique).
+  - Smoke test: Top hit for "eosinophilic meningitis Angiostrongylus" is PMID 579615 (score 17.6820).
+  - Recall test: 23 / 23 (100%) for PubMedQA questions whose gold PMID is in the pilot subset (100% Recall@1, MRR@32 = 1.0000).
+- Detailed verification log: `results/bm25_index_check.txt`
+
+
