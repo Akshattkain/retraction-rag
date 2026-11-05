@@ -1,0 +1,43 @@
+=== MIRAGE Gold Evidence Retraction and Subset Check ===
+Loading third_party/MIRAGE/benchmark.json...
+Loading data/processed/retracted.parquet...
+Loading data/processed/subset_docs.parquet...
+Loaded 37,201 retracted PMIDs and 1,224,827 corpus subset PMIDs.
+
+--------------------------------------------------
+Dataset: PUBMEDQA
+--------------------------------------------------
+Number of questions: 500
+Total question-PMID gold pairs: 500
+Unique gold PMIDs: 500
+Gold PMIDs in retracted set (unique PMIDs): 0
+Gold PMID occurrences in retracted set: 0
+  No gold PMIDs found in the retracted set.
+
+Gold PMIDs in corpus subset:
+  Unique gold PMIDs in corpus subset: 23 / 500 (4.60%)
+  Question-PMID pairs in corpus subset: 23 / 500 (4.60%)
+
+--------------------------------------------------
+Dataset: BIOASQ
+--------------------------------------------------
+Number of questions: 618
+Total question-PMID gold pairs: 3,556
+Unique gold PMIDs: 3,467
+Gold PMIDs in retracted set (unique PMIDs): 6
+Gold PMID occurrences in retracted set: 6
+
+List of retracted gold evidence papers:
+  Question ID                PMID       in_rw    in_tag   reinstated   retraction_date
+  ------------------------------------------------------------------------------------
+  621ea5a53a8413c653000055   22009066   False    True     False        None        
+  622629d13a8413c65300007e   34484859   True     True     False        2022-05-04  
+  5e323e93fbd6abf43b000059   26598533   True     True     False        2016-07-01  
+  5e4b64126d0a277941000028   21102589   True     True     False        2012-12-04  
+  5d3856ca7bc3fee31f000016   23190393   True     True     False        2015-07-07  
+  5c6d441d7c78d69471000037   24349058   True     True     False        2025-07-11  
+
+Gold PMIDs in corpus subset:
+  Unique gold PMIDs in corpus subset: 194 / 3,467 (5.60%)
+  Question-PMID pairs in corpus subset: 199 / 3,556 (5.60%)
+
