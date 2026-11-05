@@ -1,0 +1,18 @@
+=== PubMed Corpus Subset Scan ===
+Chunk files processed: 58
+Total documents: 1,224,889
+Unique valid PMIDs: 1,224,827
+Missing PMIDs: 0
+Non-numeric PMIDs: 0
+
+=== Retraction Match Summary ===
+Total retracted documents: 1,528 (0.1247% of total docs)
+Unique retracted PMIDs found in subset: 1,528
+  - Both (RW & PubMed tag): 1,226 docs
+  - Retraction Watch only: 101 docs
+  - PubMed tag only: 201 docs
+  - Sum of components: 1,528 docs
+
+=== Output Files ===
+Parquet table: data/processed/subset_docs.parquet
+Summary log: results/corpus_scan.txt
