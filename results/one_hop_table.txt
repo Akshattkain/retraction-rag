@@ -1,0 +1,47 @@
+=== Corpus Subset One-Hop Flag Generation ===
+
+--- Step 1: Loading Input Data ---
+Loading data/processed/icite_citing_pairs.parquet...
+  Loaded 735,647 citation pairs.
+Loading data/processed/retracted.parquet...
+  Loaded 37,201 retracted PMIDs.
+Loading data/processed/notice_exclude_pmids.txt...
+  Loaded 36,649 notice exclusion PMIDs.
+Loading data/processed/notice_pmids.txt...
+  Loaded 38,142 notice PMIDs.
+Loading data/processed/subset_docs.parquet...
+  Loaded 1,224,889 subset docs (1,224,827 unique PMIDs).
+
+--- Step 2: Sequential Citation Pair Filtering ---
+(a) All pairs: 735,647 pairs, 597,694 unique citing PMIDs
+(b) After dropping notice exclusion list: 719,914 pairs, 583,827 unique citing PMIDs
+(c) After keeping only corpus subset citing PMIDs: 27,491 pairs, 22,097 unique citing PMIDs
+
+--- Step 3: Building Subset Flags ---
+Successfully wrote 1,224,889 rows to data/processed/subset_flags.parquet.
+
+--- Step 4: Summary Metrics & Sanity Checks ---
+Total subset documents: 1,224,889
+Retracted documents: 1,528 (expected 1,528)
+is_notice documents: 234 (expected 234)
+in_situ documents: 57 (expected 57)
+
+One-hop documents: 21,696
+  Share of all subset documents: 1.7713% (21,696 / 1,224,889)
+  Share of non-retracted documents: 1.7735% (21,696 / 1,223,361)
+
+Distribution of n_retracted_cited among one-hop documents (21,696 total):
+  n_retracted_cited = 1:  18,468 (85.12%)
+  n_retracted_cited = 2:  2,283 (10.52%)
+  n_retracted_cited >= 3: 945 (4.36%)
+
+Retracted papers cited by another retracted paper:
+  Global (all iCite pairs): 8,415 retracted PMIDs are cited by 9,688 retracted PMIDs (18,860 pairs)
+  Subset retracted docs cited by any retracted paper: 384 docs
+  Within corpus subset (step c): 749 pairs where citing doc is a subset retracted doc
+    - Subset retracted docs that cite another retracted paper: 402 docs
+    - Subset retracted docs cited by another subset retracted paper: 58 docs
+
+Notice documents without exclusion filter:
+  Notice docs that cite a retracted paper in the corpus subset: 73 docs
+  (These 73 notice docs would have been falsely flagged as one-hop papers without the exclusion list)
