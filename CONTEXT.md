@@ -83,3 +83,14 @@ labels -> BM25 index -> iCite one-hop table -> retrieval over MIRAGE (7,663 ques
 - Detailed verification log: `results/bm25_index_check.txt`
 
 
+
+## BM25 Retrieval over MIRAGE (stage: retrieval)
+- Script: `src/run_bm25_retrieval.py` (run as `caffeinate -i .venv/bin/python src/run_bm25_retrieval.py`). Pyserini 2.4.0, BM25 defaults, k=32, deterministic (no seed). Query = `question` field only, key `<dataset>/<id>`.
+- Outputs: `data/processed/retrieval_bm25.parquet` (qkey, dataset, rank, docid, pmid, score), `data/processed/retrieval_bm25_flagged.parquet` (+ is_retracted, is_notice, one_hop, in_situ, n_retracted_cited), resumable chunks in `data/processed/retrieval_partial/`. Log: `results/retrieval_exposure.txt`.
+- Run: 7,663 questions (medqa 1,273; medmcqa 4,183; pubmedqa 500; bioasq 618; mmlu 1,089). 245,121 rows (not 245,216: 95 short). 0 truncated queries. ~0.7s per 100 questions.
+- 4 queries returned <32 hits, all medmcqa, all very short (2-3 words) = one rare drug/term plus function words ("is", "a"), not stopwords-only: "Arestin is:" (0 hits), "Algophobia is:" (0), "Prucalopride is a" (19), "Dicor is" (14). Likely fewer than 32 subset docs contain the term (5% corpus subset).
+- Exposure (share of retrieved rows | questions with >=1 hit), corpus base rate in brackets:
+  - is_retracted: 0.113% | 3.42% [0.125%]. Bioasq highest (0.324% | 9.22%), medqa lowest (0.020% | 0.63%).
+  - one_hop: 1.50% | 31.4% [1.77%]. Bioasq 4.71% | 60.0%.
+  - is_notice: 0.006% | 0.18% [0.019%].
+  - Row-level exposure is at or below base rate overall (bioasq is the exception for retracted and one-hop).
