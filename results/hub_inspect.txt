@@ -1,0 +1,330 @@
+=== Hub inspection (BM25, MIRAGE) ===
+Rows: 245,121; one-hop rows: 3,679
+
+=== 1. Top 25 one-hop docs ===
+
+--- Top 25 by number of questions (ranks 1-32) ---
+ 1. pubmed23n0800_14851  pmid 25032021
+    title: Breathlessness with pulmonary metastases: a multimodal approach.
+    content words: 1,021
+    questions 521, rows 521, median rank 5.0
+    questions per dataset: medqa 402, mmlu 95, medmcqa 23, pubmedqa 1
+    n_retracted_cited 1; cites retracted PMIDs: [18425927]
+ 2. pubmed23n1080_12980  pmid 33859915
+    title: A Rare Thrombophilic Occurrence: Dural Venous Sinus Thrombosis in a Patient with Significant Family History of Protein S Deficiency.
+    content words: 481
+    questions 104, rows 104, median rank 16.0
+    questions per dataset: medqa 78, mmlu 23, medmcqa 3
+    n_retracted_cited 1; cites retracted PMIDs: [20421270]
+ 3. pubmed23n0880_178  pmid 27587745
+    title: 'Inflammatory breast cancer' due to metastatic adenocarcinoma of lung.
+    content words: 130
+    questions 55, rows 55, median rank 18.0
+    questions per dataset: medqa 42, mmlu 10, medmcqa 3
+    n_retracted_cited 1; cites retracted PMIDs: [23255943]
+ 4. pubmed23n1060_6651  pmid 33240787
+    title: An asthmatic pregnant woman with COVID-19: A case report study.
+    content words: 212
+    questions 24, rows 24, median rank 18.5
+    questions per dataset: medqa 19, medmcqa 3, mmlu 2
+    n_retracted_cited 1; cites retracted PMIDs: [32205204]
+ 5. pubmed23n0760_116  pmid 23725316
+    title: The FiCTION dental trial protocol - filling children's teeth: indicated or not?
+    content words: 350
+    questions 14, rows 14, median rank 15.0
+    questions per dataset: medmcqa 13, pubmedqa 1
+    n_retracted_cited 1; cites retracted PMIDs: [23543523]
+ 6. pubmed23n0780_22704  pmid 24396761
+    title: Clinical utility of intra-operative 6% hydroxyethyl starch (130 / 0.4) supplementation in hypoxemic femur injury patients: a preliminary report of twenty cases.
+    content words: 301
+    questions 9, rows 9, median rank 12.0
+    questions per dataset: medqa 7, mmlu 2
+    n_retracted_cited 1; cites retracted PMIDs: [11473870]
+ 7. pubmed23n1140_18606  pmid 35697550
+    title: Oral health-related quality of life of conventional removable partial dentures, unilateral nonmetal clasp dentures, and shortened dental arch with 2- or 3-tooth unilateral distal extension tooth loss in the mandible: A randomized, crossover, clinical trial.
+    content words: 458
+    questions 9, rows 9, median rank 10.0
+    questions per dataset: medmcqa 9
+    n_retracted_cited 1; cites retracted PMIDs: [22336794]
+ 8. pubmed23n1120_3745  pmid 35068896
+    title: Assessment of bone marrow-derived mesenchymal stem cells capacity for odontogenic differentiation and dentin regeneration in methimazole-treated albino rats (Light microscopic Study).
+    content words: 270
+    questions 8, rows 8, median rank 11.5
+    questions per dataset: medmcqa 8
+    n_retracted_cited 1; cites retracted PMIDs: [28365680]
+ 9. pubmed23n0920_19896  pmid 28952192
+    title: Efficacy of a rubber bristles interdental cleaner compared to an interdental brush on dental plaque, gingival bleeding and gingival abrasion: A randomized clinical trial.
+    content words: 216
+    questions 7, rows 7, median rank 18.0
+    questions per dataset: medmcqa 6, mmlu 1
+    n_retracted_cited 1; cites retracted PMIDs: [24353078]
+10. pubmed23n1020_9466  pmid 32015383
+    title: Three-dimensional periodontal tissue regeneration using a bone-ligament complex cell sheet.
+    content words: 186
+    questions 7, rows 7, median rank 24.0
+    questions per dataset: medmcqa 7
+    n_retracted_cited 1; cites retracted PMIDs: [28053317]
+11. pubmed23n1100_24720  pmid 34485518
+    title: Biomechanics in Removable Partial Dentures: A Literature Review of FEA-Based Studies.
+    content words: 201
+    questions 7, rows 7, median rank 13.0
+    questions per dataset: medmcqa 7
+    n_retracted_cited 1; cites retracted PMIDs: [34046498]
+12. pubmed23n0640_12691  pmid 19821315
+    title: Enamel matrix derivative (Emdogain(R)) for periodontal tissue regeneration in intrabony defects.
+    content words: 659
+    questions 6, rows 6, median rank 22.5
+    questions per dataset: medmcqa 6
+    n_retracted_cited 2; cites retracted PMIDs: [11406001, 16625546]
+13. pubmed23n0740_8504  pmid 23092063
+    title: Iron metabolism: current facts and future directions.
+    content words: 223
+    questions 6, rows 6, median rank 24.0
+    questions per dataset: medmcqa 6
+    n_retracted_cited 1; cites retracted PMIDs: [21195349]
+14. pubmed23n0880_11181  pmid 27602537
+    title: Dietary supplementation with myo-inositol in women during pregnancy for treating gestational diabetes.
+    content words: 976
+    questions 6, rows 6, median rank 9.0
+    questions per dataset: medmcqa 4, medqa 1, pubmedqa 1
+    n_retracted_cited 1; cites retracted PMIDs: [18854115]
+15. pubmed23n1080_857  pmid 33845598
+    title: Is vitamin K<sub>2</sub> a treatment choice for atypical femoral fractures in patients with secondary osteoporosis?
+    content words: 168
+    questions 6, rows 6, median rank 21.5
+    questions per dataset: medqa 3, mmlu 2, medmcqa 1
+    n_retracted_cited 1; cites retracted PMIDs: [14584089]
+16. pubmed23n1100_16135  pmid 34475684
+    title: Influence of obturating techniques on root dentin crack propagation: A micro-computed tomography assessment.
+    content words: 211
+    questions 6, rows 6, median rank 3.5
+    questions per dataset: medmcqa 6
+    n_retracted_cited 1; cites retracted PMIDs: [23066233]
+17. pubmed23n0700_18756  pmid 21772121
+    title: RNA-mediated epigenetic modifications of an endogenous gene targeted by a viral vector: a potent gene silencing system to produce a plant that does not carry a transgene but has altered traits.
+    content words: 234
+    questions 5, rows 5, median rank 7.0
+    questions per dataset: bioasq 4, mmlu 1
+    n_retracted_cited 1; cites retracted PMIDs: [12869699]
+18. pubmed23n0820_19811  pmid 25678563
+    title: Peptidylprolyl isomerase A governs TARDBP function and assembly in heterogeneous nuclear ribonucleoprotein complexes.
+    content words: 165
+    questions 5, rows 5, median rank 23.0
+    questions per dataset: bioasq 4, medmcqa 1
+    n_retracted_cited 1; cites retracted PMIDs: [16847061]
+19. pubmed23n0940_11314  pmid 29556949
+    title: More sugar? No, thank you! The elusive nature of low carbohydrate diets.
+    content words: 269
+    questions 5, rows 5, median rank 9.0
+    questions per dataset: mmlu 3, medmcqa 2
+    n_retracted_cited 1; cites retracted PMIDs: [23432189]
+20. pubmed23n0980_6383  pmid 30782116
+    title: Trigeminal neuralgia secondary to multiple sclerosis: from the clinical picture to the treatment options.
+    content words: 241
+    questions 5, rows 5, median rank 27.0
+    questions per dataset: medmcqa 2, bioasq 1, mmlu 1, pubmedqa 1
+    n_retracted_cited 1; cites retracted PMIDs: [16034857]
+21. pubmed23n1060_19454  pmid 33255760
+    title: Vitamin K and Osteoporosis.
+    content words: 136
+    questions 5, rows 5, median rank 19.0
+    questions per dataset: medmcqa 5
+    n_retracted_cited 1; cites retracted PMIDs: [15465502]
+22. pubmed23n1080_5972  pmid 33851682
+    title: Comparison of the treatment outcomes of the conventional stainless steel crown restorations and the hall technique in the treatment of carious primary molars.
+    content words: 358
+    questions 5, rows 5, median rank 8.0
+    questions per dataset: medmcqa 4, mmlu 1
+    n_retracted_cited 1; cites retracted PMIDs: [16856019]
+23. pubmed23n1100_16315  pmid 34475872
+    title: Evaluation of Next-Generation H3 Influenza Vaccines in Ferrets Pre-Immune to Historical H3N2 Viruses.
+    content words: 234
+    questions 5, rows 5, median rank 18.0
+    questions per dataset: medmcqa 4, mmlu 1
+    n_retracted_cited 1; cites retracted PMIDs: [28978709]
+24. pubmed23n0380_15042  pmid 11493727
+    title: Anemia-induced increase in the bleeding time: implications for treatment of nonsurgical blood loss.
+    content words: 333
+    questions 4, rows 4, median rank 14.5
+    questions per dataset: medmcqa 4
+    n_retracted_cited 1; cites retracted PMIDs: [10047653]
+25. pubmed23n0400_9472  pmid 12120211
+    title: Neural hormonal regulation of exocrine pancreatic secretion.
+    content words: 296
+    questions 4, rows 4, median rank 19.0
+    questions per dataset: medmcqa 3, pubmedqa 1
+    n_retracted_cited 1; cites retracted PMIDs: [11158274]
+
+--- Top 25 by number of questions (ranks 1-5 only) ---
+ 1. pubmed23n0800_14851  pmid 25032021
+    title: Breathlessness with pulmonary metastases: a multimodal approach.
+    content words: 1,021
+    questions 283, rows 283, median rank 2.0
+    questions per dataset: medqa 225, mmlu 51, medmcqa 6, pubmedqa 1
+    n_retracted_cited 1; cites retracted PMIDs: [18425927]
+ 2. pubmed23n1080_12980  pmid 33859915
+    title: A Rare Thrombophilic Occurrence: Dural Venous Sinus Thrombosis in a Patient with Significant Family History of Protein S Deficiency.
+    content words: 481
+    questions 17, rows 17, median rank 3.0
+    questions per dataset: medqa 12, mmlu 5
+    n_retracted_cited 1; cites retracted PMIDs: [20421270]
+ 3. pubmed23n0880_178  pmid 27587745
+    title: 'Inflammatory breast cancer' due to metastatic adenocarcinoma of lung.
+    content words: 130
+    questions 8, rows 8, median rank 2.5
+    questions per dataset: medqa 4, medmcqa 2, mmlu 2
+    n_retracted_cited 1; cites retracted PMIDs: [23255943]
+ 4. pubmed23n0760_116  pmid 23725316
+    title: The FiCTION dental trial protocol - filling children's teeth: indicated or not?
+    content words: 350
+    questions 4, rows 4, median rank 2.5
+    questions per dataset: medmcqa 3, pubmedqa 1
+    n_retracted_cited 1; cites retracted PMIDs: [23543523]
+ 5. pubmed23n1060_6651  pmid 33240787
+    title: An asthmatic pregnant woman with COVID-19: A case report study.
+    content words: 212
+    questions 4, rows 4, median rank 4.5
+    questions per dataset: medqa 4
+    n_retracted_cited 1; cites retracted PMIDs: [32205204]
+ 6. pubmed23n1100_16135  pmid 34475684
+    title: Influence of obturating techniques on root dentin crack propagation: A micro-computed tomography assessment.
+    content words: 211
+    questions 4, rows 4, median rank 3.0
+    questions per dataset: medmcqa 4
+    n_retracted_cited 1; cites retracted PMIDs: [23066233]
+ 7. pubmed23n0680_3989  pmid 21108921
+    title: Management of carious primary molar teeth by UK postgraduates in paediatric dentistry.
+    content words: 255
+    questions 3, rows 3, median rank 2.0
+    questions per dataset: medmcqa 3
+    n_retracted_cited 1; cites retracted PMIDs: [16856019]
+ 8. pubmed23n0980_24168  pmid 30803026
+    title: Divergent SATB1 expression across human life span and tissue compartments.
+    content words: 247
+    questions 3, rows 3, median rank 1.0
+    questions per dataset: bioasq 3
+    n_retracted_cited 1; cites retracted PMIDs: [23308245]
+ 9. pubmed23n1040_3759  pmid 32626514
+    title: Targeting Sphingosine Kinase by ABC294640 against Diffuse Intrinsic Pontine Glioma (DIPG).
+    content words: 190
+    questions 3, rows 3, median rank 5.0
+    questions per dataset: bioasq 3
+    n_retracted_cited 1; cites retracted PMIDs: [14645242]
+10. pubmed23n1140_18606  pmid 35697550
+    title: Oral health-related quality of life of conventional removable partial dentures, unilateral nonmetal clasp dentures, and shortened dental arch with 2- or 3-tooth unilateral distal extension tooth loss in the mandible: A randomized, crossover, clinical trial.
+    content words: 458
+    questions 3, rows 3, median rank 3.0
+    questions per dataset: medmcqa 3
+    n_retracted_cited 1; cites retracted PMIDs: [22336794]
+11. pubmed23n0300_20160  pmid 9037638
+    title: Continuous venovenous haemofiltration using polyacrylonitrile filters does not activate contact system and intrinsic coagulation pathways.
+    content words: 259
+    questions 2, rows 2, median rank 2.0
+    questions per dataset: medmcqa 2
+    n_retracted_cited 1; cites retracted PMIDs: [8026206]
+12. pubmed23n0500_8082  pmid 15310786
+    title: Role of the dependence receptor DCC in colorectal cancer pathogenesis.
+    content words: 268
+    questions 2, rows 2, median rank 2.0
+    questions per dataset: medmcqa 2
+    n_retracted_cited 3; cites retracted PMIDs: [10399920, 11239147, 11239160]
+13. pubmed23n0540_17163  pmid 16616153
+    title: Characterization of T-cell large granular lymphocyte leukemia associated with Sjogren's syndrome-an important but under-recognized association.
+    content words: 270
+    questions 2, rows 2, median rank 2.5
+    questions per dataset: medmcqa 2
+    n_retracted_cited 1; cites retracted PMIDs: [11665979]
+14. pubmed23n0580_5475  pmid 17881822
+    title: Structure of an aliphatic amidase from Geobacillus pallidus RAPc8.
+    content words: 225
+    questions 2, rows 2, median rank 3.5
+    questions per dataset: medmcqa 2
+    n_retracted_cited 1; cites retracted PMIDs: [12382040]
+15. pubmed23n0580_7592  pmid 17884683
+    title: Calcium, ageing, and neuronal vulnerability in Parkinson's disease.
+    content words: 210
+    questions 2, rows 2, median rank 2.0
+    questions per dataset: bioasq 2
+    n_retracted_cited 1; cites retracted PMIDs: [17673498]
+16. pubmed23n0620_15474  pmid 19171458
+    title: Morphine-methadone opioid rotation in cancer patients: analysis of dose ratio predicting factors.
+    content words: 249
+    questions 2, rows 2, median rank 5.0
+    questions per dataset: medmcqa 2
+    n_retracted_cited 1; cites retracted PMIDs: [15266542]
+17. pubmed23n0680_15777  pmid 21123999
+    title: Inactivation of Bmp4 from the Tbx1 expression domain causes abnormal pharyngeal arch artery and cardiac outflow tract remodeling.
+    content words: 156
+    questions 2, rows 2, median rank 3.0
+    questions per dataset: medmcqa 2
+    n_retracted_cited 1; cites retracted PMIDs: [19557177]
+18. pubmed23n0740_20175  pmid 23106836
+    title: Minimal intervention dentistry for managing dental caries - a review: report of a FDI task group.
+    content words: 219
+    questions 2, rows 2, median rank 3.0
+    questions per dataset: medmcqa 2
+    n_retracted_cited 1; cites retracted PMIDs: [15266519]
+19. pubmed23n0740_7203  pmid 23090533
+    title: Risk of fever after misoprostol for the prevention of postpartum hemorrhage: a meta-analysis.
+    content words: 241
+    questions 2, rows 2, median rank 1.0
+    questions per dataset: medmcqa 2
+    n_retracted_cited 1; cites retracted PMIDs: [19249048]
+20. pubmed23n0820_18078  pmid 25676448
+    title: Cognitive and Functional Decline in Patients With Mild Alzheimer Dementia With or Without Comorbid Diabetes.
+    content words: 407
+    questions 2, rows 2, median rank 3.0
+    questions per dataset: bioasq 2
+    n_retracted_cited 1; cites retracted PMIDs: [19015157]
+21. pubmed23n0820_18978  pmid 25677565
+    title: Swedish guidelines for the treatment of pain in tonsil surgery in pediatric patients up to 18 years.
+    content words: 255
+    questions 2, rows 2, median rank 4.5
+    questions per dataset: medmcqa 2
+    n_retracted_cited 1; cites retracted PMIDs: [19149526]
+22. pubmed23n0860_17881  pmid 26952502
+    title: Commercially pure titanium (cp-Ti) versus titanium alloy (Ti6Al4V) materials as bone anchored implants - Is one truly better than the other?
+    content words: 200
+    questions 2, rows 2, median rank 4.5
+    questions per dataset: medmcqa 2
+    n_retracted_cited 1; cites retracted PMIDs: [25048469]
+23. pubmed23n0880_3624  pmid 27592182
+    title: The unstable thoracic cage injury: The concomitant sternal fracture indicates a severe thoracic spine fracture.
+    content words: 286
+    questions 2, rows 2, median rank 3.5
+    questions per dataset: mmlu 1, pubmedqa 1
+    n_retracted_cited 1; cites retracted PMIDs: [18001736]
+24. pubmed23n0940_11314  pmid 29556949
+    title: More sugar? No, thank you! The elusive nature of low carbohydrate diets.
+    content words: 269
+    questions 2, rows 2, median rank 4.0
+    questions per dataset: mmlu 2
+    n_retracted_cited 1; cites retracted PMIDs: [23432189]
+25. pubmed23n0940_5525  pmid 29550144
+    title: miR-19b-3p inhibits breast cancer cell proliferation and reverses saracatinib-resistance by regulating PI3K/Akt pathway.
+    content words: 195
+    questions 2, rows 2, median rank 2.5
+    questions per dataset: bioasq 2
+    n_retracted_cited 1; cites retracted PMIDs: [23578572]
+
+=== 2. One-hop question-level exposure with hub exclusion ===
+Excluded docs are removed without back-filling (lower bound on exposure).
+
+k = 5: share (count) of questions with >=1 one-hop hit within ranks <= 5
+  excluding                                            overall             medqa           medmcqa          pubmedqa            bioasq              mmlu
+  nothing                                          9.32% (714)      19.48% (248)       5.00% (209)        6.20% (31)      21.04% (130)        8.82% (96)
+  top 1 doc                                        5.73% (439)        2.28% (29)       4.85% (203)        6.00% (30)      21.04% (130)        4.32% (47)
+  top 10 docs                                      5.21% (399)         0.71% (9)       4.59% (192)        5.80% (29)      21.04% (130)        3.58% (39)
+  all docs in >=5 questions (23 docs)              5.01% (384)         0.71% (9)       4.30% (180)        5.80% (29)      20.87% (129)        3.40% (37)
+
+k = 32: share (count) of questions with >=1 one-hop hit within ranks <= 32
+  excluding                                            overall             medqa           medmcqa          pubmedqa            bioasq              mmlu
+  nothing                                       31.37% (2,404)      40.38% (514)    24.07% (1,007)      30.00% (150)      60.03% (371)      33.24% (362)
+  top 1 doc                                     26.36% (2,020)      16.97% (216)      23.62% (988)      30.00% (150)      60.03% (371)      27.09% (295)
+  top 10 docs                                   23.66% (1,813)        6.21% (79)      22.76% (952)      29.80% (149)      60.03% (371)      24.06% (262)
+  all docs in >=5 questions (23 docs)           23.10% (1,770)        5.97% (76)      22.09% (924)      29.60% (148)      59.39% (367)      23.42% (255)
+
+=== 3. Distinct retrieved docids vs corpus base rates ===
+Distinct retrieved docids: 147,741 (of 1,224,889 in corpus subset, 12.06%)
+  is_retracted: 0.1279% of distinct retrieved docs (189) | corpus base rate 0.1247%
+  one_hop: 1.5541% of distinct retrieved docs (2,296) | corpus base rate 1.7713%
