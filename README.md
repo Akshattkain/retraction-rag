@@ -24,7 +24,7 @@ If retrieval turns out to be neutral, exposure just tracks base rates, and that'
 ## Setup
 
 - Corpus: a uniform ~5% sample of [MedRAG's PubMed corpus](https://arxiv.org/pdf/2402.13178) (every 20th baseline file, 58 files, 1,224,889 abstracts). The full corpus is 23.9M snippets from a Feb 2024 snapshot, about 70 GB of text, so I'm piloting on the sample and may scale up later.
-- Questions: MIRAGE, 7,663 questions.
+- Questions: MIRAGE, 7,663 questions. The query is the question text only, without the answer options.
 - Retriever: BM25 through Pyserini with default parameters, k = 32.
 - Retraction labels: Retraction Watch (`RetractionNature == "Retraction"`) combined with PubMed's "Retracted Publication" tag.
 - Retraction notices: PubMed's notice list combined with Retraction Watch's `RetractionPubMedID`. Notices that are not themselves retracted papers are excluded from the citing side.
@@ -34,7 +34,8 @@ If retrieval turns out to be neutral, exposure just tracks base rates, and that'
 ## Layout
 
 ```
-CONTEXT.md        rules and verified data facts, read by the coding agent before each task
+CLAUDE.md         working rules for the coding agent (imports CONTEXT.md)
+CONTEXT.md        rules and verified data facts
 README.md
 requirements.txt
 src/              one script per stage
@@ -105,6 +106,7 @@ open("data/processed/notice_exclude_pmids.txt", "w").write("\n".join(map(str, so
 print(len(union), len(excl))
 EOF
 python src/build_one_hop_flags.py
+python src/run_bm25_retrieval.py
 ```
 
 ## Results so far
@@ -115,14 +117,22 @@ python src/build_one_hop_flags.py
 - BM25 index: 1,224,889 documents, 1.5 GB, count matches the corpus scan. All 23 PubMedQA gold papers that are in the subset come back at rank 1. That's an easy test, so it checks the index and PMID mapping, not retrieval quality on real queries.
 - Notice lists: 34,200 from PubMed and 31,668 unique from Retraction Watch, 38,142 combined (27,726 in both). NLM renamed "Retraction of Publication" to "Retraction Notice" in 2026, so the query uses the new name ([NLM Technical Bulletin](https://www.nlm.nih.gov/pubs/techbull/ma26/ma26_pubmed_update_MeSH_changes.html)). 1,493 of the combined list are also retracted papers (the notice reuses the paper's PMID), so the exclusion list drops those and keeps 36,649. In the subset there are 291 notices, 57 of them also retracted, leaving 234 to exclude.
 - Citation links: iCite returned 37,135 of the 37,201 retracted PMIDs, with 735,647 (retracted, citing) pairs from 597,694 unique citing papers. The median retracted paper has 7 citing papers and the max is 4,217. After dropping notices, 719,914 pairs remain, and 27,491 of them have a citing paper in the subset.
-- One-hop: 21,696 subset abstracts (1.77%) cite a retracted paper. 85.1% cite exactly one, 10.5% cite two, and 4.4% cite three or more. Without the notice exclusion, 73 more notice abstracts would have been flagged.
+- One-hop flags: 21,696 subset abstracts (1.77%) cite a retracted paper. 85.1% cite exactly one, 10.5% cite two, and 4.4% cite three or more.
 - Retracted papers citing retracted papers: 402 of the 1,528 retracted abstracts in the subset (26%) cite another retracted paper, and overall it's 9,688 of 37,201 (26.0%). For non-retracted abstracts it's 1.8%. This is an observation, not a finding. Retractions cluster by topic and in networks of papers that cite each other.
-- Rough chance baselines: with 32 snippets per question and random retrieval, about 3.9% of questions would contain a retracted abstract and about 44% a one-hop abstract (arithmetic from the rates above). Retrieval isn't random, so these are reference points, not the test.
+- Retrieval: BM25 (k = 32) over all 7,663 MIRAGE questions returned 245,121 rows. Four very short MedMCQA questions (one rare term plus function words, like "Arestin is:") returned fewer than 32 hits, probably because the 5% subset has few documents with that term.
+- Direct exposure: 3.42% of questions (about 262) retrieved at least one retracted abstract. Retracted abstracts are 0.113% of retrieved rows against a 0.125% corpus base rate, so retrieval looks neutral overall. By dataset: BioASQ 9.2%, MedMCQA 3.7%, PubMedQA 3.6%, MMLU 2.4%, MedQA 0.6%.
+- One-hop exposure: 31.4% of questions (about 2,400) retrieved at least one abstract that cites a retracted paper, from 1.50% of rows against a 1.77% base rate. By dataset: BioASQ 60.0%, MedQA 40.4%, MMLU 33.2%, PubMedQA 30.0%, MedMCQA 24.1%.
+- For reference, random retrieval of 32 abstracts would give about 3.9% of questions with a retracted abstract and about 44% with a one-hop abstract (arithmetic from the corpus rates).
+- BioASQ runs about 2.6 times the base rate in rows for both measures. That's probably a topic effect: it asks about specific research topics where retractions and their citers are dense. It needs a topic-matched baseline, so treat it as a lead.
+- Direct hits land in different questions (3.42% of questions observed vs 3.54% if independent). One-hop hits clump in the same questions (31.4% vs 38.4%), except in MedQA.
+- Retraction notices show up in 0.18% of questions (about 14), so they barely matter here.
+- A retraction filter can fix at most the ~3.4% of questions with a direct hit. The ~31% with a one-hop hit are untouched by it. The filter ablation will test this.
 
 ## Limitations
 
 - The subset is ~5% of the corpus, so each question has less competition than in the full corpus.
 - BM25 only, with no dense retriever comparison yet.
+- Counts are small in places (8 MedQA questions and 18 PubMedQA questions have a retracted hit), and there are no confidence intervals yet.
 - Retraction dates and reasons exist only for papers in Retraction Watch (30,546 of 37,201, 82%). Papers that only carry the PubMed tag have neither.
 - Labels are current but the corpus snapshot is from Feb 2024, so some papers were retracted after the index was built.
 - Snippets are abstracts, not full text. 62 PMIDs have two snippet rows, and counts are per snippet.
@@ -141,15 +151,19 @@ python src/build_one_hop_flags.py
 - [x] Retraction-notice lists and exclusion rule
 - [x] Fetch citing papers from iCite for all retracted PMIDs
 - [x] One-hop flags for the corpus subset
-- [ ] Fetch publication years to split citations before and after retraction
-- [ ] Run BM25 (k = 32) on all 7,663 MIRAGE questions
-- [ ] Measure direct and one-hop exposure against subset base rates
+- [x] Run BM25 (k = 32) on all 7,663 MIRAGE questions
+- [ ] Exposure by rank bucket, most-retrieved retracted papers, and case studies
+- [ ] Topic-matched baselines for BioASQ, and confidence intervals
 - [ ] Filter ablation (index-time vs query-time)
-- [ ] Answer-change test (design to be decided)
+- [ ] Breakdown by retraction reason
 - [ ] Sensitivity check excluding reinstated papers
+- [ ] Fetch publication years to split citations before and after retraction
+- [ ] Answer-change test (design to be decided)
 - [ ] Decide whether to run on the full corpus
 
 ## Updates
+
+Newest last. Add a bullet with each commit.
 
 - Set up the repo and environment (Python 3.12, Pyserini 2.4.0).
 - Downloaded Retraction Watch (shallow clone, 79 MB), the PubMed retraction tag PMIDs (35,274), MIRAGE, and the 5% corpus subset (3.5 GB).
@@ -160,6 +174,8 @@ python src/build_one_hop_flags.py
 - Downloaded retraction-notice lists from PubMed (34,200) and Retraction Watch (31,668 unique), and combined them (38,142). 1,493 are also retracted papers, so the exclusion list keeps 36,649.
 - Fetched citing papers from iCite: 37,135 of 37,201 retracted PMIDs returned, 735,647 (retracted, citing) pairs, 597,694 unique citing papers.
 - Built one-hop flags: 21,696 of 1,224,889 subset abstracts (1.77%) cite a retracted paper, 85% of them exactly one. 402 of 1,528 retracted abstracts (26%) cite another retracted paper.
+- Moved the coding workflow from ArkenOS to Claude Code in the terminal. CLAUDE.md holds the working rules.
+- Ran BM25 retrieval over all 7,663 MIRAGE questions and flagged each hit: 3.42% of questions retrieved a retracted abstract, 31.4% one that cites a retracted paper.
 
 ## References
 
