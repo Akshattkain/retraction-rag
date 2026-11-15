@@ -1,0 +1,14 @@
+                                             3680
+pmid                                     18425927
+doi                10.1002/14651858.cd005623.pub2
+retraction_date               2013-11-22 00:00:00
+reasons                [Withdrawn as Out of Date]
+in_rw                                        True
+in_pubmed_tag                               False
+has_reinstatement                           False
+                                                                                                                                    41008
+Title             Non‐pharmacological interventions for breathlessness in advanced stages of malignant and non‐malignant diseases (Pub 2)
+Journal                                                                                           Cochrane Database of Systematic Reviews
+RetractionNature                                                                                                               Retraction
+RetractionDate                                                                                                            11/22/2013 0:00
+Reason                                                                                                          Withdrawn as Out of Date;
