@@ -1,0 +1,354 @@
+=== Retraction reasons (stage 1) ===
+Retracted PMIDs: 37,201
+
+=== 1. All reasons, count of papers ===
+Papers: 37,201; with no reasons: 6,655; with >=1 reason: 30,546
+Distinct reason values: 110
+   14,373  Investigation by Journal/Publisher
+   12,296  Unreliable Results and/or Conclusions
+   10,070  Investigation by Third Party
+    9,662  Concerns/Issues about Data
+    6,237  Concerns/Issues about Referencing/Attributions
+    5,928  Paper Mill
+    5,844  Concerns/Issues about Peer Review
+    5,214  Concerns/Issues about Results and/or Conclusions
+    4,896  Duplication of/in Image
+    3,609  Computer-Aided Content or Computer-Generated Content
+    3,426  Compromised Peer Review
+    2,803  Objections by Author(s)
+    2,714  Concerns/Issues about Image
+    2,546  Investigation by Company/Institution
+    2,251  Original Data and/or Images not Provided and/or not Available
+    2,217  Lack of IRB/IACUC Approval and/or Compliance
+    2,054  Author Unresponsive
+    2,021  Unreliable Data
+    1,590  Concerns/Issues about Authorship/Affiliation
+    1,548  Euphemisms for Duplication
+    1,510  Misconduct by Author
+    1,447  Euphemisms for Plagiarism
+    1,420  Error in Data
+    1,363  Misconduct - Official Investigation(s) and/or Finding(s)
+    1,317  Falsification/Fabrication of Data
+    1,309  Upgrade/Update of Prior Notice(s)
+    1,305  Duplication of/in Article
+    1,218  Manipulation of Images
+    1,211  Informed/Patient Consent - None/Withdrawn
+    1,052  Date of Article and/or Notice Unknown
+    1,037  Notice - Limited or No Information
+      990  Plagiarism of/in Article
+      983  Error in Analyses
+      933  Error in Results and/or Conclusions
+      921  Error in Methods
+      891  Duplication of Data
+      888  Removed
+      846  Error in Image
+      804  Results Not Reproducible
+      712  Plagiarism of Image
+      556  Objections by Third Party
+      550  Conflict of Interest
+      542  Concerns/Issues about Human Subject Welfare
+      538  False/Forged Authorship
+      514  Plagiarism of Text
+      505  Plagiarism of Data
+      472  Falsification/Fabrication of Image
+      448  Ethical Violations by Author
+      446  Concerns/Issues about Article
+      442  Retract and Replace
+      329  Rogue Editor
+      327  Concerns/Issues about Third Party Involvement
+      326  Duplication of Content through Error by Journal/Publisher
+      298  Lack of Approval from Author
+      285  Copyright Claims
+      268  Investigation by ORI
+      267  Error by Journal/Publisher
+      265  Breach of Policy by Author
+      263  Error in Text
+      257  Lack of Approval from Third Party
+      247  Withdrawn as Out of Date
+      237  Unreliable Image
+      230  Concerns/Issues about Methods
+      228  Duplication of Text
+      177  Lack of Approval from Company/Institution
+      174  Cites Retracted Work
+      159  Contamination of Cell Lines/Tissues
+      147  Notice - Unable to Access via current resources
+      145  Error in Materials
+       92  Error in Cell Lines/Tissues
+       89  Falsification/Fabrication of Results
+       79  False/Forged Affiliation
+       79  Notice - Lack of
+       78  Doing the Right Thing
+       70  Taken from Dissertation/Thesis
+       65  Criminal Proceedings
+       65  Miscommunication with/by Author
+       64  Legal Reasons and/or Threats
+       63  Bias Issues or Lack of Balance
+       62  Contamination of Materials
+       59  Complaints about Author
+       57  Withdrawn to Publish in Different Journal
+       55  Concerns/Issues about Animal Welfare
+       52  Temporary Removal
+       38  Manipulation of Results
+       34  Error by Third Party
+       29  Publishing Ban
+       26  Manipulation of Data
+       25  Civil Proceedings
+       25  Ethical Violations by Company/Institution/Third Party
+       20  Objections by Company/Institution
+       19  Misconduct by Third Party
+       14  Salami Slicing
+       11  Miscommunication with/by Journal/Publisher
+       10  Miscommunication with/by Third Party
+        9  Miscommunication with/by Company/Institution
+        9  Updated to Retraction
+        8  Euphemisms for Misconduct
+        7  Complaints about Third Party
+        7  Nonpayment of Fees and/or Refusal to Pay
+        7  Taken via Peer Review
+        6  Misconduct by Company/Institution
+        5  Taken via Translation
+        4  Complaints about Company/Institution
+        4  Hoax Paper
+        4  No Further Action
+        4  Not Presented at Conference
+        4  Updated to Correction
+        1  Sabotage of Materials/Methods
+        1  Transfer of Copyright and/or Ownership
+
+Retracted PMIDs with no reasons (tag-only): 6,655
+
+=== 2. Reasons by source group ===
+
+--- In both sources (Retraction Watch and PubMed tag) ---
+Papers: 28,619; with no reasons: 0; with >=1 reason: 28,619
+Distinct reason values: 109
+   14,073  Investigation by Journal/Publisher
+   12,009  Unreliable Results and/or Conclusions
+   10,000  Investigation by Third Party
+    9,519  Concerns/Issues about Data
+    6,067  Concerns/Issues about Referencing/Attributions
+    5,902  Paper Mill
+    5,802  Concerns/Issues about Peer Review
+    5,153  Concerns/Issues about Results and/or Conclusions
+    4,845  Duplication of/in Image
+    3,586  Computer-Aided Content or Computer-Generated Content
+    3,344  Compromised Peer Review
+    2,676  Concerns/Issues about Image
+    2,661  Objections by Author(s)
+    2,423  Investigation by Company/Institution
+    2,233  Original Data and/or Images not Provided and/or not Available
+    2,185  Lack of IRB/IACUC Approval and/or Compliance
+    1,960  Author Unresponsive
+    1,943  Unreliable Data
+    1,508  Concerns/Issues about Authorship/Affiliation
+    1,500  Euphemisms for Duplication
+    1,442  Misconduct by Author
+    1,382  Euphemisms for Plagiarism
+    1,333  Error in Data
+    1,302  Misconduct - Official Investigation(s) and/or Finding(s)
+    1,280  Falsification/Fabrication of Data
+    1,268  Upgrade/Update of Prior Notice(s)
+    1,193  Informed/Patient Consent - None/Withdrawn
+    1,187  Manipulation of Images
+    1,180  Duplication of/in Article
+      905  Error in Analyses
+      884  Plagiarism of/in Article
+      882  Error in Results and/or Conclusions
+      870  Duplication of Data
+      865  Error in Methods
+      824  Error in Image
+      776  Results Not Reproducible
+      764  Notice - Limited or No Information
+      740  Date of Article and/or Notice Unknown
+      697  Plagiarism of Image
+      544  Removed
+      538  Concerns/Issues about Human Subject Welfare
+      536  Conflict of Interest
+      535  Objections by Third Party
+      505  False/Forged Authorship
+      488  Plagiarism of Data
+      475  Plagiarism of Text
+      462  Falsification/Fabrication of Image
+      431  Concerns/Issues about Article
+      430  Ethical Violations by Author
+      320  Concerns/Issues about Third Party Involvement
+      273  Rogue Editor
+      264  Lack of Approval from Author
+      256  Copyright Claims
+      254  Investigation by ORI
+      244  Lack of Approval from Third Party
+      236  Breach of Policy by Author
+      231  Error in Text
+      227  Unreliable Image
+      226  Concerns/Issues about Methods
+      216  Duplication of Text
+      215  Error by Journal/Publisher
+      203  Duplication of Content through Error by Journal/Publisher
+      199  Retract and Replace
+      161  Cites Retracted Work
+      161  Lack of Approval from Company/Institution
+      154  Contamination of Cell Lines/Tissues
+      133  Notice - Unable to Access via current resources
+      131  Error in Materials
+       90  Error in Cell Lines/Tissues
+       85  Falsification/Fabrication of Results
+       75  Doing the Right Thing
+       73  False/Forged Affiliation
+       68  Taken from Dissertation/Thesis
+       64  Miscommunication with/by Author
+       62  Contamination of Materials
+       62  Criminal Proceedings
+       61  Bias Issues or Lack of Balance
+       55  Concerns/Issues about Animal Welfare
+       55  Notice - Lack of
+       55  Withdrawn to Publish in Different Journal
+       53  Legal Reasons and/or Threats
+       35  Manipulation of Results
+       33  Error by Third Party
+       31  Complaints about Author
+       26  Manipulation of Data
+       26  Publishing Ban
+       25  Ethical Violations by Company/Institution/Third Party
+       23  Civil Proceedings
+       19  Objections by Company/Institution
+       18  Misconduct by Third Party
+       13  Salami Slicing
+       12  Temporary Removal
+       11  Miscommunication with/by Journal/Publisher
+       10  Miscommunication with/by Third Party
+        9  Updated to Retraction
+        8  Euphemisms for Misconduct
+        8  Miscommunication with/by Company/Institution
+        7  Complaints about Third Party
+        6  Misconduct by Company/Institution
+        6  Nonpayment of Fees and/or Refusal to Pay
+        5  Taken via Translation
+        5  Withdrawn as Out of Date
+        4  Complaints about Company/Institution
+        4  Hoax Paper
+        3  Taken via Peer Review
+        3  Updated to Correction
+        1  Not Presented at Conference
+        1  Sabotage of Materials/Methods
+        1  Transfer of Copyright and/or Ownership
+
+--- Retraction Watch only ---
+Papers: 1,927; with no reasons: 0; with >=1 reason: 1,927
+Distinct reason values: 95
+      344  Removed
+      312  Date of Article and/or Notice Unknown
+      300  Investigation by Journal/Publisher
+      287  Unreliable Results and/or Conclusions
+      273  Notice - Limited or No Information
+      243  Retract and Replace
+      242  Withdrawn as Out of Date
+      170  Concerns/Issues about Referencing/Attributions
+      143  Concerns/Issues about Data
+      142  Objections by Author(s)
+      125  Duplication of/in Article
+      123  Duplication of Content through Error by Journal/Publisher
+      123  Investigation by Company/Institution
+      106  Plagiarism of/in Article
+       94  Author Unresponsive
+       87  Error in Data
+       82  Compromised Peer Review
+       82  Concerns/Issues about Authorship/Affiliation
+       78  Error in Analyses
+       78  Unreliable Data
+       70  Investigation by Third Party
+       68  Misconduct by Author
+       65  Euphemisms for Plagiarism
+       61  Concerns/Issues about Results and/or Conclusions
+       61  Misconduct - Official Investigation(s) and/or Finding(s)
+       56  Error in Methods
+       56  Rogue Editor
+       52  Error by Journal/Publisher
+       51  Duplication of/in Image
+       51  Error in Results and/or Conclusions
+       48  Euphemisms for Duplication
+       42  Concerns/Issues about Peer Review
+       41  Upgrade/Update of Prior Notice(s)
+       40  Temporary Removal
+       39  Plagiarism of Text
+       38  Concerns/Issues about Image
+       37  Falsification/Fabrication of Data
+       34  Lack of Approval from Author
+       33  False/Forged Authorship
+       32  Error in Text
+       32  Lack of IRB/IACUC Approval and/or Compliance
+       31  Manipulation of Images
+       29  Breach of Policy by Author
+       29  Copyright Claims
+       28  Complaints about Author
+       28  Results Not Reproducible
+       26  Paper Mill
+       24  Notice - Lack of
+       23  Computer-Aided Content or Computer-Generated Content
+       22  Error in Image
+       21  Duplication of Data
+       21  Objections by Third Party
+       18  Ethical Violations by Author
+       18  Informed/Patient Consent - None/Withdrawn
+       18  Original Data and/or Images not Provided and/or not Available
+       17  Plagiarism of Data
+       16  Lack of Approval from Company/Institution
+       15  Concerns/Issues about Article
+       15  Plagiarism of Image
+       14  Conflict of Interest
+       14  Error in Materials
+       14  Investigation by ORI
+       14  Notice - Unable to Access via current resources
+       13  Cites Retracted Work
+       13  Lack of Approval from Third Party
+       12  Duplication of Text
+       11  Legal Reasons and/or Threats
+       10  Falsification/Fabrication of Image
+       10  Unreliable Image
+        7  Concerns/Issues about Third Party Involvement
+        6  False/Forged Affiliation
+        5  Contamination of Cell Lines/Tissues
+        4  Concerns/Issues about Human Subject Welfare
+        4  Concerns/Issues about Methods
+        4  Falsification/Fabrication of Results
+        4  No Further Action
+        4  Taken via Peer Review
+        3  Criminal Proceedings
+        3  Doing the Right Thing
+        3  Manipulation of Results
+        3  Not Presented at Conference
+        3  Publishing Ban
+        2  Bias Issues or Lack of Balance
+        2  Civil Proceedings
+        2  Error in Cell Lines/Tissues
+        2  Taken from Dissertation/Thesis
+        2  Withdrawn to Publish in Different Journal
+        1  Error by Third Party
+        1  Miscommunication with/by Author
+        1  Miscommunication with/by Company/Institution
+        1  Misconduct by Third Party
+        1  Nonpayment of Fees and/or Refusal to Pay
+        1  Objections by Company/Institution
+        1  Salami Slicing
+        1  Updated to Correction
+
+--- PubMed tag only ---
+Papers: 6,655; with no reasons: 6,655; with >=1 reason: 0
+Distinct reason values: 0
+
+=== 3. 15 most common reason combinations ===
+Distinct non-empty combinations: 8,557
+    1,925  Computer-Aided Content or Computer-Generated Content | Concerns/Issues about Data | Concerns/Issues about Peer Review | Concerns/Issues about Referencing/Attributions | Concerns/Issues about Results and/or Conclusions | Investigation by Journal/Publisher | Investigation by Third Party | Paper Mill | Unreliable Results and/or Conclusions
+    1,317  Compromised Peer Review | Investigation by Journal/Publisher | Investigation by Third Party | Paper Mill | Unreliable Results and/or Conclusions
+    1,032  Concerns/Issues about Data | Concerns/Issues about Peer Review | Concerns/Issues about Referencing/Attributions | Investigation by Journal/Publisher | Investigation by Third Party | Unreliable Results and/or Conclusions
+      769  Computer-Aided Content or Computer-Generated Content | Concerns/Issues about Data | Concerns/Issues about Peer Review | Concerns/Issues about Referencing/Attributions | Concerns/Issues about Results and/or Conclusions | Informed/Patient Consent - None/Withdrawn | Investigation by Journal/Publisher | Investigation by Third Party | Lack of IRB/IACUC Approval and/or Compliance | Paper Mill | Unreliable Results and/or Conclusions
+      574  Duplication of/in Article
+      392  Compromised Peer Review | Investigation by Journal/Publisher
+      346  Computer-Aided Content or Computer-Generated Content | Concerns/Issues about Data | Concerns/Issues about Peer Review | Concerns/Issues about Referencing/Attributions | Concerns/Issues about Results and/or Conclusions | Investigation by Journal/Publisher | Investigation by Third Party | Unreliable Results and/or Conclusions
+      336  Concerns/Issues about Data | Concerns/Issues about Human Subject Welfare | Concerns/Issues about Peer Review | Concerns/Issues about Referencing/Attributions | Investigation by Journal/Publisher | Investigation by Third Party | Lack of IRB/IACUC Approval and/or Compliance | Unreliable Results and/or Conclusions
+      336  Notice - Limited or No Information
+      258  Plagiarism of/in Article
+      237  Duplication of Content through Error by Journal/Publisher
+      234  Concerns/Issues about Peer Review | Investigation by Journal/Publisher
+      213  Date of Article and/or Notice Unknown | Notice - Limited or No Information | Removed
+      203  Duplication of/in Image
+      197  Euphemisms for Plagiarism | Plagiarism of/in Article
