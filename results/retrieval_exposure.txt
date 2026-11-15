@@ -1,0 +1,59 @@
+=== BM25 retrieval over MIRAGE ===
+Pyserini version: 2.4.0 (BM25 defaults), k=32
+--- Questions per dataset ---
+medqa: 1,273
+medmcqa: 4,183
+pubmedqa: 500
+bioasq: 618
+mmlu: 1,089
+total: 7,663
+[progress] 500/7,663 questions (chunk 1/16, 2.4s per 100 q)
+[progress] 1,000/7,663 questions (chunk 2/16, 1.9s per 100 q)
+[progress] 1,500/7,663 questions (chunk 3/16, 1.4s per 100 q)
+[progress] 2,000/7,663 questions (chunk 4/16, 0.6s per 100 q)
+[progress] 2,500/7,663 questions (chunk 5/16, 0.4s per 100 q)
+[progress] 3,000/7,663 questions (chunk 6/16, 0.4s per 100 q)
+[progress] 3,500/7,663 questions (chunk 7/16, 0.3s per 100 q)
+[progress] 4,000/7,663 questions (chunk 8/16, 0.3s per 100 q)
+[progress] 4,500/7,663 questions (chunk 9/16, 0.3s per 100 q)
+[progress] 5,000/7,663 questions (chunk 10/16, 0.3s per 100 q)
+[progress] 5,500/7,663 questions (chunk 11/16, 0.3s per 100 q)
+[progress] 6,000/7,663 questions (chunk 12/16, 0.3s per 100 q)
+[progress] 6,500/7,663 questions (chunk 13/16, 0.3s per 100 q)
+[progress] 7,000/7,663 questions (chunk 14/16, 0.4s per 100 q)
+[progress] 7,500/7,663 questions (chunk 15/16, 0.8s per 100 q)
+[progress] 7,663/7,663 questions (chunk 16/16, 1.7s per 100 q)
+
+--- Run summary ---
+Questions run: 7,663 (expected 7,663)
+Total rows: 245,121 (expected 245,216)
+Queries with fewer than 32 hits: 4
+  of which zero hits: 2
+Truncated queries (first 300 words): 0
+Time per 100 questions: 0.7s (over 7,663 questions run this session; 0 resumed from partial files)
+
+--- Exposure (share of retrieved rows | share of questions with >=1 hit) ---
+
+is_retracted  (corpus base rate: 0.1247%)
+  overall    rows 0.1126% | questions 3.4190%
+  medqa      rows 0.0196% | questions 0.6284%
+  medmcqa    rows 0.1181% | questions 3.6577%
+  pubmedqa   rows 0.1187% | questions 3.6000%
+  bioasq     rows 0.3236% | questions 9.2233%
+  mmlu       rows 0.0775% | questions 2.3875%
+
+one_hop  (corpus base rate: 1.7713%)
+  overall    rows 1.5009% | questions 31.3715%
+  medqa      rows 1.6055% | questions 40.3771%
+  medmcqa    rows 1.0422% | questions 24.0736%
+  pubmedqa   rows 1.3187% | questions 30.0000%
+  bioasq     rows 4.7077% | questions 60.0324%
+  mmlu       rows 1.4032% | questions 33.2415%
+
+is_notice  (corpus base rate: 0.0191%)
+  overall    rows 0.0061% | questions 0.1827%
+  medqa      rows 0.0000% | questions 0.0000%
+  medmcqa    rows 0.0075% | questions 0.2152%
+  pubmedqa   rows 0.0125% | questions 0.4000%
+  bioasq     rows 0.0152% | questions 0.4854%
+  mmlu       rows 0.0000% | questions 0.0000%
