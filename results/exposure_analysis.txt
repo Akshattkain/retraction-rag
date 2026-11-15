@@ -1,0 +1,96 @@
+=== Exposure analysis (BM25, MIRAGE) ===
+Rows: 245,121, questions: 7,661
+
+=== 1. Exposure by rank bucket (share of rows) ===
+Corpus base rate: is_retracted 0.1247%, one_hop 1.7713%
+
+is_retracted  (base 0.1247%)
+  group              1-5        6-16       17-32
+  overall        0.0914%     0.1222%     0.1126%
+  medqa          0.0157%     0.0143%     0.0245%
+  medmcqa        0.1052%     0.1326%     0.1122%
+  pubmedqa       0.1200%     0.1455%     0.1000%
+  bioasq         0.2265%     0.3383%     0.3439%
+  mmlu           0.0367%     0.0751%     0.0918%
+
+one_hop  (base 1.7713%)
+  group              1-5        6-16       17-32
+  overall        2.0102%     1.5095%     1.3358%
+  medqa          3.9906%     1.4711%     0.9525%
+  medmcqa        1.0667%     1.0589%     1.0229%
+  pubmedqa       1.2800%     1.1818%     1.4250%
+  bioasq         5.1780%     4.7661%     4.5206%
+  mmlu           1.8549%     1.5861%     1.1364%
+
+=== 2. Distinct retracted docs retrieved ===
+Retracted rows: 276 of 245,121
+Distinct retracted docids: 189
+Questions with >=1 retracted hit: 262
+Questions per retracted doc: min 1, median 1.0, mean 1.46, max 6
+  appear in exactly 1 question: 138
+  appear in >=2 questions: 51
+  appear in >=5 questions: 5
+
+Top 10 most-retrieved retracted docs:
+  pubmed23n0880_23254  pmid 27618613  questions 6  rows 6  | Microarchitecture and Biomechanical Evaluation of BoneCeramic Grafted Alveolar Defects during Tooth 
+  pubmed23n1120_5330  pmid 35070540  questions 5  rows 5  | Intussusception in Adults: A Rare Etiology of Small Intestinal Obstruction.
+  pubmed23n0540_24469  pmid 16625546  questions 5  rows 5  | Guided tissue regeneration for periodontal infra-bony defects.
+  pubmed23n0780_8664  pmid 24379856  questions 5  rows 5  | Links demystified: Periodontitis and cancer.
+  pubmed23n1120_16292  pmid 35083020  questions 5  rows 5  | Quetiapine Combined with Sodium Valproate in Patients with Alzheimer's Disease with Mental and Behav
+  pubmed23n0520_19685  pmid 15965464  questions 4  rows 4  | RNA-interference-directed chromatin modification coupled to RNA polymerase II transcription.
+  pubmed23n0580_695  pmid 17875939  questions 4  rows 4  | Vitamin K induces osteoblast differentiation through pregnane X receptor-mediated transcriptional co
+  pubmed23n1100_612  pmid 34457216  questions 4  rows 4  | A Controlled Study of Continuous Lumbar Drainage of Fluid and Lumbar Puncture Drainage for Aneurysma
+  pubmed23n0820_6548  pmid 25662160  questions 4  rows 4  | Polyphosphate induces matrix metalloproteinase-3-mediated proliferation of odontoblast-like cells de
+  pubmed23n0760_4846  pmid 23731055  questions 4  rows 4  | Mouse ES cells have a potential to differentiate into odontoblast-like cells using hanging drop meth
+
+=== 3. Case studies (seed 0) ===
+
+Case 1: bioasq/6428d7da690f196b51000050
+  question: 'Can untranslated regions (UTRs) regulate gene expression?'
+  retracted hits for this question: 1 (showing best-ranked)
+  rank 21, pmid 12826679, docid pubmed23n0420_7756, score 16.3484
+  title: Regulation of cyclooxgenase-2 mRNA stability by taxanes: evidence for involvement of p38, MAPKAPK-2, and HuR.
+  retraction reasons: Duplication of/in Image
+  retraction date: 2019-12-02
+  in_situ: False
+
+Case 2: bioasq/5e46fda33f54159529000012
+  question: 'Are there interactions between short and long noncoding RNAs?'
+  retracted hits for this question: 1 (showing best-ranked)
+  rank 4, pmid 36285160, docid pubmed23n1160_1622, score 12.9470
+  title: Noncoding RNAs and Virus and Treatment in Allergic Rhinitis.
+  retraction reasons: Concerns/Issues about Data; Concerns/Issues about Results and/or Conclusions; Concerns/Issues about Referencing/Attributions; Concerns/Issues about Peer Review; Investigation by Journal/Publisher; Investigation by Third Party; Paper Mill; Computer-Aided Content or Computer-Generated Content; Unreliable Results and/or Conclusions
+  retraction date: 2023-08-09
+  in_situ: False
+
+Case 3: pubmedqa/22540518
+  question: 'Is micro-computed tomography reliable to determine the microstructure of the maxillary alveolar bone?'
+  retracted hits for this question: 1 (showing best-ranked)
+  rank 1, pmid 27618613, docid pubmed23n0880_23254, score 20.3270
+  title: Microarchitecture and Biomechanical Evaluation of BoneCeramic Grafted Alveolar Defects during Tooth Movement in Rat.
+  retraction reasons: Duplication of/in Article
+  retraction date: 2017-01-01
+  in_situ: False
+
+Case 4: medmcqa/af9a1805-2fda-43e1-9c73-64731258f12c
+  question: 'The mean systolic blood pressure was measured in a sample population of elderly females and came out to be 125 mm Hg with a standard detion of 10. 95 percent of people would have blood pressure above:'
+  retracted hits for this question: 1 (showing best-ranked)
+  rank 29, pmid 26302666, docid pubmed23n0840_11479, score 27.6526
+  title: Urinary sodium or potassium excretion and blood pressure in adults of Shandong province, China: preliminary results of the SMASH project.
+  retraction reasons: Error in Methods; Error in Results and/or Conclusions; Unreliable Results and/or Conclusions
+  retraction date: 2016-05-01
+  in_situ: False
+
+Case 5: medmcqa/10105277-cd6c-4309-82b7-3f1866a336e0
+  question: 'The best stimulator of respiratory centre is:'
+  retracted hits for this question: 1 (showing best-ranked)
+  rank 19, pmid 23736093, docid pubmed23n0760_8858, score 6.8165
+  title: Comparison of four facial muscles, orbicularis oculi, corrugator supercilii, masseter or mylohyoid, as best predictor of good conditions for intubation: a randomised blinded trial.
+  retraction reasons: Concerns/Issues about Data; Concerns/Issues about Results and/or Conclusions; Error in Data; Error in Results and/or Conclusions; Investigation by Journal/Publisher
+  retraction date: 2017-04-01
+  in_situ: False
+
+=== 4. One-hop rows with n_retracted_cited >= 3 ===
+Overall: 4.0772% of 3,679 one-hop rows
+bioasq: 9.2374% of 931 one-hop rows
+Corpus one-hop docs (for comparison): 4.3556% of 21,696
