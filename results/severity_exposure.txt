@@ -1,0 +1,90 @@
+=== Retraction severity and exposure (BM25, MIRAGE) ===
+Reason map check: 110 distinct reasons in retracted.parquet, all mapped, no extra keys
+Wrote data/processed/retracted_classes.parquet (37,201 rows)
+
+=== 1. Class and source-group sizes ===
+
+All retracted PMIDs (n = 37,201 PMIDs)
+  class:        A 22,854 (61.4%)  B 5,811 (15.6%)  C 92 (0.2%)  D 1,789 (4.8%)  U 6,655 (17.9%)
+  source group: both 28,619 (76.9%)  rw_only 1,927 (5.2%)  tag_only 6,655 (17.9%)
+
+Retracted PMIDs in the corpus subset (n = 1,528 PMIDs)
+  class:        A 965 (63.2%)  B 262 (17.1%)  C 5 (0.3%)  D 95 (6.2%)  U 201 (13.2%)
+  source group: both 1,226 (80.2%)  rw_only 101 (6.6%)  tag_only 201 (13.2%)
+
+Distinct retracted docs retrieved (ranks 1-32) (n = 189 PMIDs)
+  class:        A 104 (55.0%)  B 33 (17.5%)  C 1 (0.5%)  D 24 (12.7%)  U 27 (14.3%)
+  source group: both 134 (70.9%)  rw_only 28 (14.8%)  tag_only 27 (14.3%)
+
+=== 2. Direct exposure by severity view and source group ===
+Questions with >=1 retrieved retracted doc (is_retracted); denominator = all questions in group.
+
+Direct, by severity view, k = 5: share (count) of questions
+                                               overall             medqa           medmcqa          pubmedqa            bioasq              mmlu
+  strict (A)                                0.21% (16)         0.08% (1)         0.19% (8)         0.00% (0)         0.97% (6)         0.09% (1)
+  broad (A or B)                            0.37% (28)         0.08% (1)        0.41% (17)         0.40% (2)         0.97% (6)         0.18% (2)
+  all (every paper)                         0.46% (35)         0.08% (1)        0.53% (22)         0.60% (3)         1.13% (7)         0.18% (2)
+
+Direct, by severity view, k = 32: share (count) of questions
+                                               overall             medqa           medmcqa          pubmedqa            bioasq              mmlu
+  strict (A)                               1.88% (144)         0.47% (6)        1.77% (74)         1.80% (9)        6.15% (38)        1.56% (17)
+  broad (A or B)                           2.62% (201)         0.63% (8)       2.73% (114)        2.60% (13)        7.44% (46)        1.84% (20)
+  all (every paper)                        3.42% (262)         0.63% (8)       3.66% (153)        3.60% (18)        9.22% (57)        2.39% (26)
+
+Direct, by source group, k = 5: share (count) of questions
+                                               overall             medqa           medmcqa          pubmedqa            bioasq              mmlu
+  both                                      0.37% (28)         0.08% (1)        0.38% (16)         0.60% (3)         0.97% (6)         0.18% (2)
+  rw_only                                    0.05% (4)         0.00% (0)         0.10% (4)         0.00% (0)         0.00% (0)         0.00% (0)
+  tag_only                                   0.04% (3)         0.00% (0)         0.05% (2)         0.00% (0)         0.16% (1)         0.00% (0)
+
+Direct, by source group, k = 32: share (count) of questions
+                                               overall             medqa           medmcqa          pubmedqa            bioasq              mmlu
+  both                                     2.58% (198)         0.63% (8)       2.61% (109)        2.60% (13)        7.44% (46)        2.02% (22)
+  rw_only                                   0.46% (35)         0.00% (0)        0.67% (28)         0.80% (4)         0.16% (1)         0.18% (2)
+  tag_only                                  0.43% (33)         0.00% (0)        0.43% (18)         0.40% (2)        1.78% (11)         0.18% (2)
+
+=== 3. One-hop exposure by strongest cited class ===
+iCite pairs after dropping notice_exclude_pmids and restricting to subset docs: 27,491 pairs, 22,097 citing PMIDs
+
+One-hop, all one-hop docs, k = 5: share (count) of questions
+                                               overall             medqa           medmcqa          pubmedqa            bioasq              mmlu
+  strict (strongest >= A)                  3.55% (272)         0.71% (9)       2.70% (113)        2.60% (13)      17.48% (108)        2.66% (29)
+  broad (strongest >= B)                   4.25% (326)        1.10% (14)       3.47% (145)        3.40% (17)      17.96% (111)        3.58% (39)
+  all (strongest >= any)                   9.32% (714)      19.48% (248)       5.00% (209)        6.20% (31)      21.04% (130)        8.82% (96)
+
+One-hop, all one-hop docs, k = 32: share (count) of questions
+                                               overall             medqa           medmcqa          pubmedqa            bioasq              mmlu
+  strict (strongest >= A)               16.91% (1,296)        4.40% (56)      15.04% (629)       18.80% (94)      52.43% (324)      17.72% (193)
+  broad (strongest >= B)                21.02% (1,611)       9.74% (124)      18.89% (790)      23.60% (118)      54.85% (339)      22.04% (240)
+  all (strongest >= any)                31.37% (2,404)      40.38% (514)    24.07% (1,007)      30.00% (150)      60.03% (371)      33.24% (362)
+
+One-hop, without the 23 docs in >=5 questions, k = 5: share (count) of questions
+                                               overall             medqa           medmcqa          pubmedqa            bioasq              mmlu
+  strict (strongest >= A)                  3.33% (255)         0.39% (5)       2.46% (103)        2.60% (13)      17.31% (107)        2.48% (27)
+  broad (strongest >= B)                   3.86% (296)         0.47% (6)       3.08% (129)        3.40% (17)      17.80% (110)        3.12% (34)
+  all (strongest >= any)                   5.01% (384)         0.71% (9)       4.30% (180)        5.80% (29)      20.87% (129)        3.40% (37)
+
+One-hop, without the 23 docs in >=5 questions, k = 32: share (count) of questions
+                                               overall             medqa           medmcqa          pubmedqa            bioasq              mmlu
+  strict (strongest >= A)               16.05% (1,230)        2.83% (36)      14.22% (595)       18.60% (93)      51.78% (320)      17.08% (186)
+  broad (strongest >= B)                19.29% (1,478)        4.24% (54)      17.93% (750)      23.40% (117)      54.21% (335)      20.39% (222)
+  all (strongest >= any)                23.10% (1,770)        5.97% (76)      22.09% (924)      29.60% (148)      59.39% (367)      23.42% (255)
+
+=== 4. One-hop docs citing only class D or U retracted papers ===
+Corpus one-hop docs (cite >=1 retracted paper, not retracted, not notice): 21,695
+Corpus subset: 21,695 docs; strongest cited class: A 15,658  B 2,477  C 36  D 1,297  U 2,227
+  cite only class D or U: 3,524 (16.24%)
+Retrieved (ranks 1-32), distinct docids: 2,296 docs; strongest cited class: A 1,547  B 299  C 11  D 225  U 214
+  cite only class D or U: 439 (19.12%)
+
+Top 10 one-hop hub docs (by questions, ranks 1-32)
+ 1. pubmed23n0800_14851  pmid 25032021  questions 521  n_retracted_cited 1  strongest cited class D
+ 2. pubmed23n1080_12980  pmid 33859915  questions 104  n_retracted_cited 1  strongest cited class D
+ 3. pubmed23n0880_178  pmid 27587745  questions 55  n_retracted_cited 1  strongest cited class B
+ 4. pubmed23n1060_6651  pmid 33240787  questions 24  n_retracted_cited 1  strongest cited class A
+ 5. pubmed23n0760_116  pmid 23725316  questions 14  n_retracted_cited 1  strongest cited class D
+ 6. pubmed23n0780_22704  pmid 24396761  questions 9  n_retracted_cited 1  strongest cited class B
+ 7. pubmed23n1140_18606  pmid 35697550  questions 9  n_retracted_cited 1  strongest cited class D
+ 8. pubmed23n1120_3745  pmid 35068896  questions 8  n_retracted_cited 1  strongest cited class A
+ 9. pubmed23n0920_19896  pmid 28952192  questions 7  n_retracted_cited 1  strongest cited class D
+10. pubmed23n1020_9466  pmid 32015383  questions 7  n_retracted_cited 1  strongest cited class A
