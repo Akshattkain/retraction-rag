@@ -176,6 +176,10 @@ Newest last. Add a bullet with each commit.
 - Built one-hop flags: 21,696 of 1,224,889 subset abstracts (1.77%) cite a retracted paper, 85% of them exactly one. 402 of 1,528 retracted abstracts (26%) cite another retracted paper.
 - Moved the coding workflow from ArkenOS to Claude Code in the terminal. CLAUDE.md holds the working rules.
 - Ran BM25 retrieval over all 7,663 MIRAGE questions and flagged each hit: 3.42% of questions retrieved a retracted abstract, 31.4% one that cites a retracted paper.
+- Hub paper: one paper (PMID 25032021, a case-study-style review on breathlessness) is retrieved for 521 of 7,663 questions and cites one retracted paper, a Cochrane review withdrawn as out of date. Removing the 23 papers that appear in 5 or more questions lowers one-hop exposure from 31.4% to 23.1% at top 32 and from 9.3% to 5.0% at top 5.
+- Retraction reasons: 110 distinct Retraction Watch reasons, grouped into four severity classes (A data/results/image/method integrity, B misconduct/ethics/authorship/peer review, C investigation/unclear, D administrative) plus U for papers with no listed reason. The grouping is mine, see src/reason_map.py.
+- Filter ablation: dropping retracted papers removes all direct exposure (262 questions at top 32, 35 at top 5) and leaves one-hop unchanged (2,404 and 714). Also dropping papers that cite them changes the top 5 for 9.64% of questions.
+- Severity: 55% of the distinct retracted papers retrieved are class A. Class A papers account for 38% of one-hop exposure at top 5 and 54% at top 32. Papers with no listed reason (all PubMed-tag-only) are not counted as class A, so strict figures are lower bounds.
 
 ## References
 
