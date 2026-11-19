@@ -1,0 +1,20 @@
+  1,000/7,663 questions (29s)
+  2,000/7,663 questions (44s)
+  3,000/7,663 questions (49s)
+  4,000/7,663 questions (54s)
+  5,000/7,663 questions (58s)
+  6,000/7,663 questions (62s)
+  7,000/7,663 questions (66s)
+
+=== Filter ablation (question-level, top-100 fetched, up to 32 kept) ===
+baseline               k=5  retracted    35 (0.46%)  one-hop   714 (9.32%)  kept from baseline 100.0% | top-5 list changed for 0.00% of questions
+baseline               k=32 retracted   262 (3.42%)  one-hop 2,404 (31.37%)  kept from baseline 100.0%
+drop_retracted         k=5  retracted     0 (0.00%)  one-hop   714 (9.32%)  kept from baseline 99.9% | top-5 list changed for 0.46% of questions
+drop_retracted         k=32 retracted     0 (0.00%)  one-hop 2,404 (31.37%)  kept from baseline 99.9%
+drop_retracted_cites   k=5  retracted     0 (0.00%)  one-hop     0 (0.00%)  kept from baseline 97.9% | top-5 list changed for 9.64% of questions
+drop_retracted_cites   k=32 retracted     0 (0.00%)  one-hop     0 (0.00%)  kept from baseline 98.4%
+
+--- sanity check against the main retrieval run (should match) ---
+baseline k=5: got (35, 714), expected (35, 714) -> MATCH
+baseline k=32: got (262, 2404), expected (262, 2404) -> MATCH
+questions with fewer than 32 results after filtering: 4
