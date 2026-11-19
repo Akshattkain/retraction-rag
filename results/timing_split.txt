@@ -1,0 +1,117 @@
+=== Timing split for one-hop exposure (BM25, MIRAGE) ===
+Pairs: 735,647 total; 719,914 after dropping notice_exclude citing PMIDs; 2,876 with a citing year (retrieved one-hop docs: 2,296)
+
+======== All cited retracted papers ========
+
+--- Pair counts per label ---
+Pairs: 2,876; retrieved one-hop docs with >=1 pair: 2,296
+  before        1,672
+  same_year       270
+  after           595
+  undated         339
+One-hop docs with >=1 undated pair: 293
+
+--- Doc level (dated pairs only) ---
+  any_after                   553
+  all_before                1,305
+  same_year_only_mixed        224
+  all_undated                 214
+  any_after + all_before + same_year_only_mixed = 2,082; docs with >=1 dated pair = 2,082  MATCH
+
+--- Question level ---
+
+k = 5, no docs removed: share (count) of questions
+                                                     overall             medqa           medmcqa          pubmedqa            bioasq              mmlu
+  any one-hop doc                                9.32% (714)      19.48% (248)       5.00% (209)        6.20% (31)      21.04% (130)        8.82% (96)
+  has a doc: any_after                           1.80% (138)        1.18% (15)        1.60% (67)        2.00% (10)        4.53% (28)        1.65% (18)
+  has a doc: all_before                          3.09% (237)        1.02% (13)       2.51% (105)        3.20% (16)       13.27% (82)        1.93% (21)
+  has a doc: same_year_only_mixed                4.35% (333)      17.67% (225)        0.67% (28)         0.20% (1)        3.40% (21)        5.33% (58)
+  has a doc: all_undated                          0.55% (42)         0.08% (1)        0.41% (17)         1.00% (5)        2.75% (17)         0.18% (2)
+  all one-hop docs undated                        0.43% (33)         0.08% (1)        0.31% (13)         1.00% (5)        2.10% (13)         0.09% (1)
+
+k = 5, 23 docs in >=5 questions removed (no back-fill): share (count) of questions
+                                                     overall             medqa           medmcqa          pubmedqa            bioasq              mmlu
+  any one-hop doc                                5.01% (384)         0.71% (9)       4.30% (180)        5.80% (29)      20.87% (129)        3.40% (37)
+  has a doc: any_after                           1.42% (109)         0.24% (3)        1.36% (57)        2.00% (10)        4.37% (27)        1.10% (12)
+  has a doc: all_before                          2.79% (214)         0.39% (5)        2.22% (93)        3.00% (15)       13.27% (82)        1.74% (19)
+  has a doc: same_year_only_mixed                 0.59% (45)         0.00% (0)        0.45% (19)         0.00% (0)        3.40% (21)         0.46% (5)
+  has a doc: all_undated                          0.55% (42)         0.08% (1)        0.41% (17)         1.00% (5)        2.75% (17)         0.18% (2)
+  all one-hop docs undated                        0.44% (34)         0.08% (1)        0.33% (14)         1.00% (5)        2.10% (13)         0.09% (1)
+
+k = 32, no docs removed: share (count) of questions
+                                                     overall             medqa           medmcqa          pubmedqa            bioasq              mmlu
+  any one-hop doc                             31.37% (2,404)      40.38% (514)    24.07% (1,007)      30.00% (150)      60.03% (371)      33.24% (362)
+  has a doc: any_after                          10.01% (767)       9.51% (121)       8.30% (347)       13.60% (68)      21.52% (133)        9.00% (98)
+  has a doc: all_before                       16.27% (1,247)        7.31% (93)      14.77% (618)       15.80% (79)      43.85% (271)      17.08% (186)
+  has a doc: same_year_only_mixed               10.34% (792)      32.13% (409)       3.44% (144)        3.60% (18)       14.24% (88)      12.21% (133)
+  has a doc: all_undated                         2.84% (218)        0.86% (11)        2.20% (92)        2.60% (13)       13.43% (83)        1.74% (19)
+  all one-hop docs undated                        1.23% (94)         0.71% (9)        1.15% (48)         1.60% (8)        3.24% (20)         0.83% (9)
+
+k = 32, 23 docs in >=5 questions removed (no back-fill): share (count) of questions
+                                                     overall             medqa           medmcqa          pubmedqa            bioasq              mmlu
+  any one-hop doc                             23.10% (1,770)        5.97% (76)      22.09% (924)      29.60% (148)      59.39% (367)      23.42% (255)
+  has a doc: any_after                           8.09% (620)        2.67% (34)       7.72% (323)       13.40% (67)      20.71% (128)        6.24% (68)
+  has a doc: all_before                       14.63% (1,121)        2.51% (32)      13.70% (573)       15.40% (77)      43.20% (267)      15.79% (172)
+  has a doc: same_year_only_mixed                3.33% (255)         0.63% (8)       2.51% (105)        3.60% (18)       14.24% (88)        3.31% (36)
+  has a doc: all_undated                         2.84% (218)        0.86% (11)        2.20% (92)        2.60% (13)       13.43% (83)        1.74% (19)
+  all one-hop docs undated                        1.28% (98)        0.79% (10)        1.20% (50)         1.80% (9)        3.24% (20)         0.83% (9)
+
+======== Class A cited papers only ========
+
+--- Pair counts per label ---
+Pairs: 1,915; retrieved one-hop docs with >=1 pair: 1,547
+  before        1,384
+  same_year       197
+  after           334
+  undated           0
+One-hop docs with >=1 undated pair: 0
+
+--- Doc level (dated pairs only) ---
+  any_after                   312
+  all_before                1,077
+  same_year_only_mixed        158
+  all_undated                   0
+  any_after + all_before + same_year_only_mixed = 1,547; docs with >=1 dated pair = 1,547  MATCH
+
+--- Question level ---
+
+k = 5, no docs removed: share (count) of questions
+                                                     overall             medqa           medmcqa          pubmedqa            bioasq              mmlu
+  any one-hop doc                                3.55% (272)         0.71% (9)       2.70% (113)        2.60% (13)      17.48% (108)        2.66% (29)
+  has a doc: any_after                            0.86% (66)         0.16% (2)        0.69% (29)         0.80% (4)        3.40% (21)        0.92% (10)
+  has a doc: all_before                          2.38% (182)         0.55% (7)        1.77% (74)         1.80% (9)       12.94% (80)        1.10% (12)
+  has a doc: same_year_only_mixed                 0.51% (39)         0.00% (0)        0.31% (13)         0.00% (0)        3.07% (19)         0.64% (7)
+  has a doc: all_undated                           0.00% (0)         0.00% (0)         0.00% (0)         0.00% (0)         0.00% (0)         0.00% (0)
+  all one-hop docs undated                         0.00% (0)         0.00% (0)         0.00% (0)         0.00% (0)         0.00% (0)         0.00% (0)
+
+k = 5, 23 docs in >=5 questions removed (no back-fill): share (count) of questions
+                                                     overall             medqa           medmcqa          pubmedqa            bioasq              mmlu
+  any one-hop doc                                3.33% (255)         0.39% (5)       2.46% (103)        2.60% (13)      17.31% (107)        2.48% (27)
+  has a doc: any_after                            0.84% (64)         0.16% (2)        0.67% (28)         0.80% (4)        3.24% (20)        0.92% (10)
+  has a doc: all_before                          2.24% (172)         0.24% (3)        1.63% (68)         1.80% (9)       12.94% (80)        1.10% (12)
+  has a doc: same_year_only_mixed                 0.44% (34)         0.00% (0)        0.24% (10)         0.00% (0)        3.07% (19)         0.46% (5)
+  has a doc: all_undated                           0.00% (0)         0.00% (0)         0.00% (0)         0.00% (0)         0.00% (0)         0.00% (0)
+  all one-hop docs undated                         0.00% (0)         0.00% (0)         0.00% (0)         0.00% (0)         0.00% (0)         0.00% (0)
+
+k = 32, no docs removed: share (count) of questions
+                                                     overall             medqa           medmcqa          pubmedqa            bioasq              mmlu
+  any one-hop doc                             16.91% (1,296)        4.40% (56)      15.04% (629)       18.80% (94)      52.43% (324)      17.72% (193)
+  has a doc: any_after                           4.76% (365)        1.34% (17)       4.14% (173)        6.60% (33)       15.86% (98)        4.04% (44)
+  has a doc: all_before                         12.45% (954)        3.06% (39)      10.88% (455)       11.60% (58)      41.59% (257)      13.31% (145)
+  has a doc: same_year_only_mixed                2.56% (196)         0.47% (6)        1.91% (80)        2.00% (10)       12.30% (76)        2.20% (24)
+  has a doc: all_undated                           0.00% (0)         0.00% (0)         0.00% (0)         0.00% (0)         0.00% (0)         0.00% (0)
+  all one-hop docs undated                         0.00% (0)         0.00% (0)         0.00% (0)         0.00% (0)         0.00% (0)         0.00% (0)
+
+k = 32, 23 docs in >=5 questions removed (no back-fill): share (count) of questions
+                                                     overall             medqa           medmcqa          pubmedqa            bioasq              mmlu
+  any one-hop doc                             16.05% (1,230)        2.83% (36)      14.22% (595)       18.60% (93)      51.78% (320)      17.08% (186)
+  has a doc: any_after                           4.67% (358)        1.34% (17)       4.09% (171)        6.60% (33)       15.21% (94)        3.95% (43)
+  has a doc: all_before                         11.78% (903)        1.49% (19)      10.33% (432)       11.40% (57)      40.94% (253)      13.04% (142)
+  has a doc: same_year_only_mixed                2.31% (177)         0.47% (6)        1.53% (64)        2.00% (10)       12.30% (76)        1.93% (21)
+  has a doc: all_undated                           0.00% (0)         0.00% (0)         0.00% (0)         0.00% (0)         0.00% (0)         0.00% (0)
+  all one-hop docs undated                         0.00% (0)         0.00% (0)         0.00% (0)         0.00% (0)         0.00% (0)         0.00% (0)
+
+======== Hub doc 25032021: pair labels ========
+docid(s): ['pubmed23n0800_14851']; pairs: 1
+  retracted_pmid class   citing year  retraction year  label
+  18425927       D              2013             2013  same_year
