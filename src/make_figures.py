@@ -1,9 +1,19 @@
 """
-Meeting figures from the retrieval results (read-only; no model, no network).
+Figures for the retracted-paper exposure analysis (read-only; no model, no network).
 Run from the project root:   python src/make_figures.py
 Reads : data/processed/retrieval_bm25_flagged.parquet, data/processed/subset_flags.parquet,
+        data/processed/retracted_classes.parquet, data/processed/icite_citing_pairs.parquet,
         third_party/MIRAGE/benchmark.json, and results/filter_ablation.csv if it exists.
-Writes: figures/f1..f7 *.png and results/meeting_summary.md
+Writes: figures/f1..f8 *.png
+Figures:
+  f1  questions with a retracted / citing paper by number of results read, vs random retrieval
+  f2  the same at top 32, by question set
+  f3  share of retrieved results and distinct papers vs the corpus base rate
+  f4  one-hop papers retrieved for the most questions
+  f5  one-hop exposure with the most repeated papers removed
+  f6  share of retrieved results by rank bucket vs the corpus rate
+  f7  effect of the index-time retraction filter on direct and one-hop exposure
+  f8  exposure by severity: one-hop (all), one-hop (class A only) and direct, top 5 and top 32
 Every figure title states its finding; a check at the end compares the numbers with the ones already
 verified in results/*.txt and prints MATCH or MISMATCH.
 """
@@ -20,15 +30,20 @@ FLAGGED = Path("data/processed/retrieval_bm25_flagged.parquet")
 FLAGS = Path("data/processed/subset_flags.parquet")
 BENCH = Path("third_party/MIRAGE/benchmark.json")
 ABL = Path("results/filter_ablation.csv")
+CLASSES = Path("data/processed/retracted_classes.parquet")
+PAIRS = Path("data/processed/icite_citing_pairs.parquet")
 FIG = Path("figures"); FIG.mkdir(exist_ok=True)
-SUMMARY = Path("results/meeting_summary.md")
 
 GREY, HI, INK, SOFT = "#8C8772", "#B04E2C", "#3D3929", "#73705F"
+TEAL = "#2F6B7A"
 KS = (1, 3, 5, 10, 32)
 NAMES = {"bioasq": "BioASQ", "medmcqa": "MedMCQA", "pubmedqa": "PubMedQA", "mmlu": "MMLU", "medqa": "MedQA"}
 EXPECT_RET = {1: 11, 3: 20, 5: 35, 10: 81, 32: 262}
 EXPECT_OH = {1: 200, 3: 459, 5: 714, 10: 1144, 32: 2404}
 EXPECT_DS = {"bioasq": 57, "medmcqa": 153, "pubmedqa": 18, "mmlu": 26, "medqa": 8}
+EXPECT_OH_ALL = {5: 714, 32: 2404}
+EXPECT_OH_STRICT = {5: 272, 32: 1296}
+EXPECT_DIRECT = {5: 35, 32: 262}
 PILOT = "Pilot: 5% sample of PubMed, keyword search (BM25), 7,663 MIRAGE questions"
 
 plt.rcParams.update({"font.size": 15, "axes.spines.top": False, "axes.spines.right": False, "axes.edgecolor": SOFT,
@@ -51,6 +66,12 @@ def bar_labels(ax, bars, fmt, inside=False):
                     ha="center", va="top" if inside else "bottom", fontsize=13, color="white" if inside else INK,
                     xytext=(0, -6 if inside else 3), textcoords="offset points", zorder=6,
                     bbox=None if inside else dict(boxstyle="round,pad=0.12", fc="white", ec="none", alpha=0.9))
+
+def contrast_vs_white(hex_color):
+    """WCAG contrast ratio of a #RRGGBB colour against a white background."""
+    c = [int(hex_color[i:i + 2], 16) / 255 for i in (1, 3, 5)]
+    c = [v / 12.92 if v <= 0.03928 else ((v + 0.055) / 1.055) ** 2.4 for v in c]
+    return 1.05 / (0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2] + 0.05)
 
 def main():
     df = pd.read_parquet(FLAGGED, columns=["qkey", "dataset", "rank", "docid", "pmid", "is_retracted", "one_hop"])
@@ -161,7 +182,6 @@ def main():
            else "Share of retrieved results by rank, against the corpus rate", "f6_by_rank.png")
 
     # ---- F7: filter ablation (only if filter_ablation.py has been run)
-    abl_note = ""
     if ABL.exists():
         a = pd.read_csv(ABL); a = a[a.scope == "overall"]
         order = ["baseline", "drop_retracted", "drop_retracted_cites"]
@@ -183,9 +203,36 @@ def main():
         finish(fig, "Dropping retracted papers removes direct exposure and leaves one-hop exposure unchanged" if unchanged
                else "What filtering retracted papers out of the results changes", "f7_filter_ablation.png",
                note=PILOT + f". Filtered papers are replaced by the next-ranked ones. The strict filter changes the top 5 for {ch:.1f}% of questions.")
-        abl_note = f"- Filter ablation: see figures/f7_filter_ablation.png (strict filter changes the top 5 for {ch:.1f}% of questions)."
 
-    # ---- numbers check and summary
+    # ---- F8: exposure by severity of the cited retracted paper
+    # strict = the retracted paper's reason class is A (see src/reason_map.py); a one-hop paper counts as
+    # strict if it cites at least one class-A retracted paper.
+    cls = pd.read_parquet(CLASSES, columns=["pmid", "reason_class"])
+    class_a = set(cls.loc[cls["reason_class"] == "A", "pmid"].astype(int))
+    oh_pmids = set(df.loc[df["one_hop"], "pmid"].astype(int))
+    pairs = pd.read_parquet(PAIRS, columns=["citing_pmid", "retracted_pmid"])
+    pairs = pairs[pairs["citing_pmid"].isin(oh_pmids)]
+    strict_citers = set(pairs.loc[pairs["retracted_pmid"].isin(class_a), "citing_pmid"].astype(int))
+    df["one_hop_strict"] = df["one_hop"] & df["pmid"].astype(int).isin(strict_citers)
+    k8 = (5, 32)
+    a5, a32 = (100 * qn(df, "one_hop_strict", k) / qn(df, "one_hop", k) for k in k8)
+    series8 = [("one-hop (all)", "one_hop", SOFT), ("one-hop (strict, class A only)", "one_hop_strict", HI),
+               ("direct (all)", "is_retracted", TEAL)]
+    assert all(contrast_vs_white(c) >= 4.5 for _, _, c in series8)
+    fig, ax = plt.subplots(figsize=(13.33, 7.5)); w = 0.26
+    for j, (lab, flag, colr) in enumerate(series8):
+        vals = [100 * qn(df, flag, k) / N for k in k8]
+        bars = ax.bar([i + (j - 1) * w for i in range(len(k8))], vals, width=w, color=colr, label=lab)
+        bar_labels(ax, bars, lambda v: f"{v:.2f}%" if v < 1 else f"{v:.1f}%")
+    ax.set_xticks(range(len(k8))); ax.set_xticklabels([f"top {k}" for k in k8])
+    ax.set_ylabel(f"% of {N:,} questions"); ax.legend(frameon=False, loc="upper left", fontsize=13)
+    finish(fig, f"Class A papers account for {a5:.0f}% of one-hop exposure at top 5 and {a32:.0f}% at top 32",
+           "f8_severity.png",
+           note=PILOT + ". Class A = at least one Retraction Watch reason about data, results, images, methods or "
+                "materials (see src/reason_map.py). Papers with no listed reason are not counted as class A, so strict "
+                "is a lower bound.")
+
+    # ---- numbers check
     log = []
     for k in KS:
         for name, got, exp in (("retracted", qn(df, "is_retracted", k), EXPECT_RET[k]), ("one-hop", qn(df, "one_hop", k), EXPECT_OH[k])):
@@ -193,25 +240,16 @@ def main():
     for ds in counts:
         log.append((f"retracted questions, {NAMES[ds]} top 32", qn(df[df.dataset == ds], "is_retracted", 32), EXPECT_DS[ds]))
     log.append(("rows", len(df), 245121)); log.append(("top paper's questions", int(hub["questions"].iloc[0]), 521))
+    for k in k8:
+        log.append((f"one-hop (all) questions, top {k}", qn(df, "one_hop", k), EXPECT_OH_ALL[k]))
+        log.append((f"one-hop (strict) questions, top {k}", qn(df, "one_hop_strict", k), EXPECT_OH_STRICT[k]))
+        log.append((f"direct (all) questions, top {k}", qn(df, "is_retracted", k), EXPECT_DIRECT[k]))
     print("\n--- check against numbers already verified in results/*.txt ---")
     bad = 0
     for name, got, exp in log:
         ok = got == exp; bad += not ok
         print(f"{name:<38} got {got:>7,}  expected {exp:>7,}  {'MATCH' if ok else 'MISMATCH'}")
-    print("ALL MATCH" if not bad else f"{bad} MISMATCH(ES): do not present the figures until this is understood")
-
-    md = ["# Results for the meeting (auto-generated by src/make_figures.py)", "", f"_{PILOT}._", "",
-          "## Headline numbers",
-          f"- Questions with at least one retracted paper in the top 32: {qn(df, 'is_retracted', 32):,} of {N:,} ({100 * qn(df, 'is_retracted', 32) / N:.2f}%); in the top 5: {qn(df, 'is_retracted', 5)} ({100 * qn(df, 'is_retracted', 5) / N:.2f}%).",
-          f"- Questions with at least one paper that cites a retracted paper: {qn(df, 'one_hop', 32):,} ({100 * qn(df, 'one_hop', 32) / N:.1f}%) in the top 32; {qn(df, 'one_hop', 5):,} ({100 * qn(df, 'one_hop', 5) / N:.1f}%) in the top 5.",
-          f"- Retracted papers are {100 * df['is_retracted'].mean():.3f}% of retrieved results against {100 * p['is_retracted']:.3f}% of the corpus.",
-          f"- One paper (PMID {int(hub['pmid'].iloc[0])}) appears in {int(hub['questions'].iloc[0])} questions; the top 10 papers cover {cover10:.1f}% of one-hop results.",
-          abl_note, "", "## Limits",
-          "- 5% sample of PubMed, one keyword retriever, abstracts only; exposure means what the system is handed, not whether answers change.",
-          "- One-hop uses PubMed-to-PubMed citation links only, so it is a lower bound, and a citing paper may criticize the retracted work.",
-          "", "## Figures", *[f"- figures/{p.name}" for p in sorted(FIG.glob('f*.png'))]]
-    SUMMARY.write_text("\n".join(md) + "\n")
-    print("wrote", SUMMARY)
+    print("ALL MATCH" if not bad else f"{bad} MISMATCH(ES): numbers differ from results/*.txt; investigate before using the figures")
 
 if __name__ == "__main__":
     main()
